@@ -1,0 +1,152 @@
+// Mobile size  - 0 and 767px
+// Tablet size  - 768px and 991px 	- @include breakpoint(tablet) {}
+// Website size - 992px and 1199px - @include breakpoint(website) {}
+// Large size  	- 1220px and 1439 	- @include breakpoint(large) {}
+// ExLarge size - 1440px and above 	- @include breakpoint(exlarge) {}
+
+/* Assigning box model */
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+// Background-size support for ie 8 - https://github.com/louisremi/background-size-polyfill
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strike, strong, sub, sup, tt, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figure, figcaption, footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, video {
+	-ms-behavior: url(/backgroundsize.min.htc);
+}
+
+/* Assigning clearfix to classes */
+.clearfix, .group{
+  @include clearfix;
+}
+
+::-webkit-input-placeholder {
+	font-size: em(12px);
+	line-height: 18px;
+	@include fonts($avenir_black);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	font-size: em(12px);
+	line-height: 18px;  
+	@include fonts($avenir_black);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	font-size: em(12px);
+	line-height: 18px;  
+	@include fonts($avenir_black);
+}
+
+:-ms-input-placeholder {  
+	font-size: em(12px);
+	line-height: 18px;  
+	@include fonts($avenir_black);
+}
+
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+hr{
+	clear: both;
+}
+
+strong{}
+span{}
+small{}
+
+a, a:visited{}
+
+ul{
+	li{
+		a{
+			&:hover{
+
+			}
+		}
+	}
+	li.active a{
+		&:hover{
+
+		}
+	}
+}
+
+
+a.button{
+	&:hover{
+
+	}
+}
+
+form{
+	fieldset{}
+	label{}
+	input[type="text"],
+	input[type="email"]{}
+	textarea{}
+	button{
+		&:hover{}
+	}
+}
+
+/* ==========================================================================
+   Custon Classes
+   ========================================================================== */
+
+.left{text-align: left;}
+.center{text-align: center;}
+.right{text-align: right;}
+
+/* ==========================================================================
+   BeingOnine's custom styles
+   ========================================================================== */
+
+
+/* Header */
+#header{}
+
+/* Main */
+section{
+	article{
+		margin: 40px auto;
+	}
+}
+
+/* Main Naigation */
+#nav{
+	ul{
+		li{
+			a{
+				&:hover{}
+			}
+		}
+		li.active a{
+			&:hover{}
+		}
+	}
+}
+
+/* Footer */
+#footer{}
+
+
+/* ==========================================================================
+   Ipad 1/2/3/4 & Ipad Mini
+   ========================================================================== */
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {}
+
+
+/* ==========================================================================
+   Internet Explorer Tidies
+   ========================================================================== */
+
+/* IE Fixes for ie8 */
+
+/* IE Fixes for ie7 */

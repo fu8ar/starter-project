@@ -1,0 +1,25 @@
+{
+  "name": "beingonline-starter-project",
+  "version": "0.0.1",
+  "description": "Starter project for Being Online",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sass",
+    "browsersync",
+    "gulp",
+    "bootstrap3",
+    "starterproject"
+  ],
+  "author": "Paul Matchett",
+  "license": "ISC"
+}
