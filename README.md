@@ -30,15 +30,19 @@ Using a Mac, sass can be installed throught the terminal by adding the following
 
 Gulp pacakages included here are as follows:
 
-gulp 			- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
-gulp-sas 		- https://www.npmjs.com/package/gulp-sass
-gulp prefixer 	- https://www.npmjs.com/package/gulp-autoprefixer
-browsersync 	- http://www.browsersync.io/docs/gulp/
-
-
-
+node-normalize-scss - https://www.npmjs.com/package/node-normalize-scss
+gulp 				- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+gulp-sas 			- https://www.npmjs.com/package/gulp-sass
+gulp prefixer 		- https://www.npmjs.com/package/gulp-autoprefixer
+browsersync 		- http://www.browsersync.io/docs/gulp/
 
 
 # Add Node Modules
 
 type into the command line 'npm install'
+
+# Gulp Run
+
+To use gulp to watch your sass files and auto update browser, type into the command link:
+
+'gulp'
