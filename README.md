@@ -8,7 +8,7 @@ This project add functionality top manage and automatically:
 
 First you will need to do the following in order to use.
 
-# Install Ruby 
+# Install Ruby and Sass for PC
 
 Ruby comes preinstalled with Mac's, however you need to add Ruby if you are working on a machine. This can be done by using the ruby installer:
 
@@ -24,9 +24,11 @@ The dev kit needs to be extracted first, perferably inside a folder (that can be
 
 * a good reference worth watching is https://www.youtube.com/watch?v=zPFsgxPb430 *
 
-# Install Sass with Mac
+# Install Sass for Mac
 
 Using a Mac, sass can be installed throught the terminal by adding the following: 'gem install sass'
+
+# Gulp Packages
 
 Gulp packages included here are as follows:
 
@@ -37,10 +39,9 @@ gulp prefixer 		- https://www.npmjs.com/package/gulp-autoprefixer
 gulp-jshint 		- https://www.npmjs.com/package/gulp-jshint
 browsersync 		- http://www.browsersync.io/docs/gulp/
 
-
 # Add Node Modules
 
-Once the project has been downloaded/cloned, cd into and type into the command line/terminal 'npm install'
+Once the project has been downloaded/cloned, cd into the project and type into the command line/terminal 'npm install'
 
 # Run Project
 
@@ -58,8 +59,8 @@ The command line should print something like this:
  UI External: http://10.0.1.13:3001
  ----------------------------------
 
- Any device can view your project using the first 2 addresses - external for othet pc's, as well as tablets and mobiles under the same network.
- 
+ Any device can view your project using the first 2 addresses - external for other pc's, as well as tablets and mobiles under the same network.
+
 
 # Test javascript files for errors
 
