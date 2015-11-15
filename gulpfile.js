@@ -1,6 +1,7 @@
 'use strict';
  
 var gulp = require('gulp'),
+  jshint = require("gulp-jshint"),
 	sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   browserSync = require('browser-sync'),
@@ -8,6 +9,13 @@ var gulp = require('gulp'),
 
   gulp.task('html', function () {
     gulp.watch("./*.html").on('change', reload);
+  });
+
+  gulp.task("lint", function() {
+    gulp.src("./js/main.js")
+        .pipe(jshint())
+        .pipe(jshint.reporter("default"));
+    gulp.watch("./js/main.js").on('change', reload);
   });
 
   gulp.task('sass', function () {
@@ -37,4 +45,4 @@ var gulp = require('gulp'),
 
   });
 
-  gulp.task('default', ['html', 'sass', 'serve'])
+  gulp.task('default', ['html', 'lint', 'sass', 'serve'])

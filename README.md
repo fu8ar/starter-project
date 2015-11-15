@@ -4,6 +4,7 @@ This project add functionality top manage and automatically:
 
 1. Creates a sever to be run on, using broswersync, which allows multiple screens on multiple devices to view and preview the view, as well as see click events and changes to be automically rendered without the need of refreshing. 
 2. Compile sass to css, as well as automatically prefixing css3 properties that are not supported by lagacy browers.
+3. Detect errors and potential problems in JavaScript codeand output to command line/terminal
 
 First you will need to do the following in order to use.
 
@@ -21,28 +22,45 @@ The dev kit needs to be extracted first, perferably inside a folder (that can be
 'ruby dk.rb install'
 'gem install sass'
 
-** a good reference worth watching is https://www.youtube.com/watch?v=zPFsgxPb430
+* a good reference worth watching is https://www.youtube.com/watch?v=zPFsgxPb430 *
 
-# Install Sass
+# Install Sass with Mac
 
 Using a Mac, sass can be installed throught the terminal by adding the following: 'gem install sass'
 
-
-Gulp pacakages included here are as follows:
+Gulp packages included here are as follows:
 
 node-normalize-scss - https://www.npmjs.com/package/node-normalize-scss
 gulp 				- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
-gulp-sas 			- https://www.npmjs.com/package/gulp-sass
+gulp-sass			- https://www.npmjs.com/package/gulp-sass
 gulp prefixer 		- https://www.npmjs.com/package/gulp-autoprefixer
+gulp-jshint 		- https://www.npmjs.com/package/gulp-jshint
 browsersync 		- http://www.browsersync.io/docs/gulp/
 
 
 # Add Node Modules
 
-type into the command line 'npm install'
+Once the project has been downloaded/cloned, cd into and type into the command line/terminal 'npm install'
 
-# Gulp Run
+# Run Project
 
 To use gulp to watch your sass files and auto update browser, type into the command link:
 
 'gulp'
+
+The command line should print something like this:
+
+ ----------------------------------
+       Local: http://localhost:3000
+    External: http://10.0.1.13:3000
+ ----------------------------------
+          UI: http://localhost:3001
+ UI External: http://10.0.1.13:3001
+ ----------------------------------
+
+ Any device can view your project using the first 2 addresses - external for othet pc's, as well as tablets and mobiles under the same network.
+ 
+
+# Test javascript files for errors
+
+'gulp lint'
