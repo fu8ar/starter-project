@@ -41,4 +41,4 @@ browsersync 	- http://www.browsersync.io/docs/gulp/
 
 # Add Node Modules
 
-type into the command line 'npm int'
+type into the command line 'npm install'
