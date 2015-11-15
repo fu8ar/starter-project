@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]> <html class="lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]> <html class="lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<!doctype html>
+<html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
 
@@ -16,7 +13,7 @@
     <!-- Set Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- IOS Icons -->
+    <!-- IOS Rules -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     
@@ -51,6 +48,7 @@
     <!-- Stylesheets -->
     <link href="stylesheets/bootstrap.css" rel="stylesheet" media="screen">
     <link href="stylesheets/app.css" rel="stylesheet" media="screen">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -83,7 +81,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><img class="img-responsive" src="img/prompt-logo.png" alt="" /></a>
+                <a class="navbar-brand" href="index.php"><img class="img-responsive" src="images/touch/chrome-touch-icon-192x192.png" alt="" /></a>
               </div>
 
               <!-- Collect the nav links, forms, and other content for toggling -->
@@ -93,7 +91,7 @@
                     <li class="scroll-links"><a href="#how-it-works">How it works</a></li>
                     <li class="scroll-links"><a href="#benefits">Benefits</a></li>
                     <li class="scroll-links"><a href="#results">Results</a></li>
-                    <li class="hidden-sm"><a class="contact-btn" href="mailto:hello@creategravity.com">Contact Us</a></li>
+                    <li class="hidden-sm"><a class="contact-btn" href="mailto:hello@beingonline.com">Contact Us</a></li>
                   </ul>
               </div><!-- /.navbar-collapse -->
           </nav>
@@ -137,33 +135,43 @@
   FOOTER
 -->
 
-  
-  <footer>
-      <div class="container center">
-        <div class="col-sm-8 col-sm-offset-2">
-          <h4>To find out more or see a live demo please use the contact us below.</h4>
-          <a class="button yellow" href="mailto:hello@beingoline.co.uk">Contact Us</a>
-          <img src="img/prompt-logo-white.png" alt=""/>
-        </div>
-      </div>
-      <section id="gravity" class="black-section">
-          <div class="container">
-            <div class="col-sm-9">
-              <small>Registration No: NI601172 | VAT Registration: GB 981 2454 11</small>
-              <small>© 2015 BeingOnline. All rights reserved.</small>
-            </div>
-            <div class="col-sm-3 right">
-              <a href="http://beingonline.co.uk">Built by BeingOnline</a>
-            </div>
+    <footer>
+        <div class="container center">
+          <div class="col-sm-8 col-sm-offset-2">
+            <h4>To find out more or see a live demo please use the contact us below.</h4>
+            <a class="button yellow" href="mailto:hello@beingoline.co.uk">Contact Us</a>
+            <img src="img/prompt-logo-white.png" alt=""/>
           </div>
-      </section>
-  </footer>
+        </div>
+        <section id="gravity" class="black-section">
+            <div class="container">
+              <div class="col-sm-9">
+                <small>Registration No: NI601172 | VAT Registration: GB 981 2454 11</small>
+                <small>© 2015 BeingOnline. All rights reserved.</small>
+              </div>
+              <div class="col-sm-3 right">
+                <a href="http://beingonline.co.uk">Built by BeingOnline</a>
+              </div>
+            </div>
+        </section>
+    </footer>
 
-  <!-- jQuery & Bootstrap Libraries -->
+    <!-- jQuery & Bootstrap Libraries -->
     <script src="js/vendor/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-    
-  <!-- Created by BeingOnline -->
+      
+    <!-- Created by BeingOnline -->
     <script src="js/main.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script>
+
   </body>
 </html>

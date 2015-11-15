@@ -1,8 +1,9 @@
-// Mobile size  - 0 and 767px
-// Tablet size  - 768px and 991px 	- @include breakpoint(tablet) {}
-// Website size - 992px and 1199px - @include breakpoint(website) {}
-// Large size  	- 1220px and 1439 	- @include breakpoint(large) {}
-// ExLarge size - 1440px and above 	- @include breakpoint(exlarge) {}
+// Mobile size  			- 0 and 479px
+// Mobile landscape size  	- 480 and 767px 	- @include breakpoint(mobile)  {}
+// Tablet size  			- 768px and 991px 	- @include breakpoint(tablet)  {}
+// Website size 			- 992px and 1199px 	- @include breakpoint(website) {}
+// Large size  				- 1220px and 1439 	- @include breakpoint(large)   {}
+// ExLarge size 			- 1440px and above 	- @include breakpoint(exlarge) {}
 
 /* Assigning box model */
 *,
@@ -93,6 +94,20 @@ form{
 	}
 }
 
+
+/* ==========================================================================
+   Bootstrap Overwrites
+   ========================================================================== */
+
+.navbar-brand{
+	padding: 0px 6px;
+
+	img{
+		height: 100%;
+		width: auto;
+	}
+}
+
 /* ==========================================================================
    Custon Classes
    ========================================================================== */
@@ -102,19 +117,11 @@ form{
 .right{text-align: right;}
 
 /* ==========================================================================
-   BeingOnine's custom styles
+   BeingOnine's stylesheet
    ========================================================================== */
-
 
 /* Header */
 #header{}
-
-/* Main */
-section{
-	article{
-		margin: 40px auto;
-	}
-}
 
 /* Main Naigation */
 #nav{
@@ -130,23 +137,13 @@ section{
 	}
 }
 
+/* Main */
+section{
+	article{
+		margin: 40px auto;
+	}
+}
+
 /* Footer */
 #footer{}
 
-
-/* ==========================================================================
-   Ipad 1/2/3/4 & Ipad Mini
-   ========================================================================== */
-
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {}
-
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {}
-
-
-/* ==========================================================================
-   Internet Explorer Tidies
-   ========================================================================== */
-
-/* IE Fixes for ie8 */
-
-/* IE Fixes for ie7 */
