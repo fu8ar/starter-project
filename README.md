@@ -51,13 +51,13 @@ To use gulp to watch your sass files and auto update browser, type into the comm
 
 The command line should print something like this:
 
- ----------------------------------
-       Local: http://localhost:3000
-    External: http://10.0.1.13:3000
- ----------------------------------
-          UI: http://localhost:3001
- UI External: http://10.0.1.13:3001
- ----------------------------------
+----------------------------------
+Local: http://localhost:3000
+External: http://10.0.1.13:3000
+----------------------------------
+UI: http://localhost:3001
+UI External: http://10.0.1.13:3001
+----------------------------------
 
  Any device can view your project using the first 2 addresses - external for other pc's, as well as tablets and mobiles under the same network.
 
