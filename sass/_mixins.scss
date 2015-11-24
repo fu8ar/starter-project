@@ -84,6 +84,13 @@ $base-font-size: 16px;
   }
 }
 
+// Mobile size        - 0 and 479px
+// Mobile landscape size    - 480 and 767px   - @include breakpoint(mobile)  {}
+// Tablet size        - 768px and 991px   - @include breakpoint(tablet)  {}
+// Website size       - 992px and 1199px  - @include breakpoint(website) {}
+// Large size         - 1220px and 1439   - @include breakpoint(large)   {}
+// ExLarge size       - 1440px and above  - @include breakpoint(exlarge) {}
+
 
 
 

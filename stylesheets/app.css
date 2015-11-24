@@ -155,7 +155,13 @@ hr {
 /* Main Naigation */
 /* Main */
 section article {
-  margin: 40px auto;
+  margin: 20px auto;
+}
+
+@media (min-width: 768px) {
+  section article {
+    margin: 40px auto;
+  }
 }
 
 /* Footer */
