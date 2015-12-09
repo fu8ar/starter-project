@@ -24,5 +24,8 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-jshint": "^1.12.0",
     "gulp-sass": "^2.1.0"
+  },
+  "dependencies": {
+    "gulp-minify-html": "^1.0.4"
   }
 }
