@@ -33,11 +33,13 @@ Using a Mac, sass can be installed throught the terminal by adding the following
 Gulp packages included here are as follows:
 
 node-normalize-scss - https://www.npmjs.com/package/node-normalize-scss
-gulp 				- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
-gulp-sass			- https://www.npmjs.com/package/gulp-sass
-gulp prefixer 		- https://www.npmjs.com/package/gulp-autoprefixer
-gulp-jshint 		- https://www.npmjs.com/package/gulp-jshint
-browsersync 		- http://www.browsersync.io/docs/gulp/
+gulp 								- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+gulp-sass						- https://www.npmjs.com/package/gulp-sass
+gulp prefixer 			- https://www.npmjs.com/package/gulp-autoprefixer
+gulp-jshint 				- https://www.npmjs.com/package/gulp-jshint
+browsersync 				- http://www.browsersync.io/docs/gulp/
+gulp-imagemin				- https://www.npmjs.com/package/gulp-imagemin
+imagemin-pngquant 	- https://www.npmjs.com/package/imagemin-pngquant
 
 # Add Node Modules
 
