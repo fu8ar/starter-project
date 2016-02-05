@@ -28,6 +28,10 @@ The dev kit needs to be extracted first, perferably inside a folder (that can be
 
 Using a Mac, sass can be installed throught the terminal by adding the following: 'gem install sass'
 
+# Babel Update
+
+http://stackoverflow.com/questions/31444350/is-it-possible-write-a-gulpfile-in-es6
+
 # Gulp Packages
 
 Gulp packages included here are as follows:

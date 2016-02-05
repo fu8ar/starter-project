@@ -19,13 +19,22 @@
     "url": "https://github.com/fu8ar/starter-project.git"
   },
   "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-core": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
     "browser-sync": "^2.10.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
     "gulp-htmlmin": "^1.3.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-jshint": "^1.12.0",
     "gulp-sass": "^2.1.0",
     "imagemin-pngquant": "^4.2.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
