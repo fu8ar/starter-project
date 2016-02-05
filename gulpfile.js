@@ -6,7 +6,7 @@ var gulp = require('gulp'),
   pngquant = require('imagemin-pngquant'),
 	sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
-  minifyHTML = require('gulp-minify-html'),
+  htmlmin = require('gulp-htmlmin'),
   browserSync = require('browser-sync'),
   reload = browserSync.reload;
 
@@ -38,14 +38,9 @@ var gulp = require('gulp'),
   });
 
   gulp.task('minify-html', function() {
-    var opts = {
-      conditionals: true,
-      spare:true
-    };
-   
-    return gulp.src('./*.html')
-      .pipe(minifyHTML(opts))
-      .pipe(gulp.dest('./dist/'));
+  return gulp.src('./*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./dist/'))
   });
  
   gulp.task('serve', function () {
