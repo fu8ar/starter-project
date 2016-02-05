@@ -67,6 +67,3 @@ The command line should print something like this:
 
  Any device can view your project using the first 2 addresses - external for other other devices using the same network.
 
-
-
-

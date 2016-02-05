@@ -72,6 +72,3 @@ var gulp = require('gulp'),
 
   gulp.task('default', ['lint', 'optimise-images', 'sass', 'minify-html', 'serve'])
 
-
-
-
