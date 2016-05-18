@@ -36,5 +36,8 @@
     "presets": [
       "es2015"
     ]
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^1.6.0"
   }
 }

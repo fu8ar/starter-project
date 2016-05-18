@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; 
  
 import gulp from 'gulp';
 import jshint from "gulp-jshint";
@@ -7,6 +7,7 @@ import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import sass from 'gulp-sass';
 import autoprefixer from 'gulp-autoprefixer';
+import sourcemaps from'gulp-sourcemaps';
 import htmlmin from 'gulp-htmlmin';
 import browserSync from 'browser-sync';
 const reload = browserSync.reload;
@@ -38,11 +39,14 @@ gulp.task('optimise-images', () => {
 
 gulp.task('sass', () => {
   return gulp.src('./sass/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
     .pipe(sass({outputStyle: 'expanded'}))
     .pipe(autoprefixer({
       browsers: ['last 15 versions'],
       cascade: true
     }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/siteFiles/css'));
 });
 
