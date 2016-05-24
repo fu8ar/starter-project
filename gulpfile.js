@@ -1,0 +1,83 @@
+'use strict'; 
+ 
+var gulp = require('gulp'),
+    jshint = require("gulp-jshint"),
+    ts = require('gulp-typescript'),
+    imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
+    sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    sourcemaps = require('gulp-sourcemaps'),
+    htmlmin = require('gulp-htmlmin'),
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload;
+
+gulp.task('minify-html', function () {
+    return gulp.src('./*.html')
+     .pipe(htmlmin({ collapseWhitespace: true }))
+     .pipe(gulp.dest('./dist/'))
+});
+
+gulp.task('sass', function () {
+    return gulp.src('./sass/*.scss')
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(sass({ outputStyle: 'expanded' }))
+      .pipe(autoprefixer({
+          browsers: ['last 15 versions'],
+          cascade: true
+      }))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest('./dist/siteFiles/css'));
+});
+
+gulp.task('ts', function () {
+  return gulp.src('./ts/*.ts')
+  .pipe(ts({
+      noImplicitAny: true,
+      //target: 'ES6',
+      out: 'main.js'
+  }))
+  .pipe(gulp.dest('dist/siteFiles/js'));
+});
+
+gulp.task("lint", function () {
+    return gulp.src("./dist/siteFiles/js/main.js")
+        .pipe(jshint())
+        .pipe(jshint.reporter("default"));
+    gulp.watch("./dist/siteFiles/js/main.js").on('change', reload);
+});
+
+gulp.task('optimise-images', function () {
+  return gulp.src('./temp-images/*')
+  .pipe(imagemin({
+    progressive: true,
+    svgoPlugins: [{removeViewBox: false}],
+    use: [pngquant()]
+  }))
+  .pipe(gulp.dest('./dist/siteFiles/images'));
+});
+
+gulp.task('serve', function () {
+
+  // Create LiveReload server
+  browserSync({
+    notify: true,
+    logPrefix: 'Project by BeingOnline',
+    server: {
+      baseDir: "dist",
+      index: "index.html"
+    }
+  });
+
+  gulp.watch('ts/**', ['ts']);
+  gulp.watch('temp-images/**', ['optimise-images']);
+  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
+  gulp.watch('./sass/*.scss', ['sass']);
+  gulp.watch("./dist/*.html").on('change', reload);
+  gulp.watch('./*.html', ['minify-html']);
+
+});
+
+gulp.task('default', ['lint','ts','optimise-images','sass','minify-html','serve']);
+
