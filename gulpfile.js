@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     sass = require('gulp-sass'),
+    normaliseCss = require('node-normalize-scss'),
     autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     htmlmin = require('gulp-htmlmin'),
@@ -21,8 +22,10 @@ gulp.task('minify-html', function () {
 gulp.task('sass', function () {
     return gulp.src('./sass/*.scss')
       .pipe(sourcemaps.init())
-      .pipe(sass().on('error', sass.logError))
-      .pipe(sass({ outputStyle: 'expanded' }))
+      .pipe(sass({
+          includePaths: normaliseCss.includePaths,
+          outputStyle: 'expanded'
+      }).on('error', sass.logError))
       .pipe(autoprefixer({
           browsers: ['last 15 versions'],
           cascade: true
