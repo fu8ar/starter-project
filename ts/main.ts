@@ -19,5 +19,6 @@ button.onclick = function() {
 //document.body.appendChild(button);
 
 var first = "hello";
-var last = "world"
-var name = `Your name is ${first} ${last}.`
+var last = "world";
+var name = `Your name is ${first} ${last}.`;
+

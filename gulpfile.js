@@ -3,6 +3,7 @@
 var gulp = require('gulp'),
     jshint = require("gulp-jshint"),
     ts = require('gulp-typescript'),
+    tsconfig = require('./tsconfig.json'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     sass = require('gulp-sass'),
@@ -36,11 +37,8 @@ gulp.task('sass', function () {
 
 gulp.task('ts', function () {
   return gulp.src('./ts/*.ts')
-  .pipe(ts({
-      noImplicitAny: true,
-      //target: 'ES6',
-      out: 'main.js'
-  }))
+  .pipe(sourcemaps.init())
+  .pipe(ts(tsconfig.compilerOptions))
   .pipe(gulp.dest('dist/siteFiles/js'));
 });
 

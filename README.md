@@ -4,7 +4,9 @@ This project add functionality top manage and automatically:
 
 1. Creates a local server for you project to run on, using broswersync, which allows multiple screens on multiple devices to view the project simultaneously, as well as see click events and changes to be automically rendered without the need of browser refresh. 
 2. Compiles sass to css, as well as automatically prefixing css3 properties that are not supported by legacy browers.
+4. Compiles Typescript to the Javascript, allowing you to use the latest ECMAScript 2016 Language Specification
 3. Detects errors and potential problems in JavaScript code and outputs to command line/terminal.
+
 
 First you will need to do the following in order to use.
 
@@ -28,26 +30,6 @@ The dev kit needs to be extracted first, perferably inside a folder (that can be
 
 Using a Mac, sass can be installed throught the terminal by adding the following: **'gem install sass'**
 
-# Babel Update
-
-This project supports the latest update to the JavaScript Language, ES2015
-
-Check the following link for more information:
-http://stackoverflow.com/questions/31444350/is-it-possible-write-a-gulpfile-in-es6
-
-# Gulp Packages
-
-Gulp packages included here are as follows:
-
-* node-normalize-scss - https://www.npmjs.com/package/node-normalize-scss
-* gulp 								- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
-* gulp-sass						- https://www.npmjs.com/package/gulp-sass
-* gulp prefixer 			- https://www.npmjs.com/package/gulp-autoprefixer
-* gulp-jshint 				- https://www.npmjs.com/package/gulp-jshint
-* browsersync 				- http://www.browsersync.io/docs/gulp/
-* gulp-imagemin				- https://www.npmjs.com/package/gulp-imagemin
-* imagemin-pngquant 	- https://www.npmjs.com/package/imagemin-pngquant
-
 
 # Install Node.js and Node Package Manager
 
@@ -57,6 +39,46 @@ Once the project has been downloaded/cloned, cd into the project and type into t
 
 This will download all of the gulp packages listed above, into your project.
 
+
+# Gulp Packages
+
+Gulp packages included here are as follows:
+
+**node-normalize-scss** - https://www.npmjs.com/package/node-normalize-scss
+
+Normalize.css makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the styles that need normalizing.
+
+**gulp** - https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+
+Build system automating tasks: minification and copying of all JavaScript files, static images, capable of watching files to automatically rerun the task when a file is updated.
+
+**gulp-typescript**	- https://www.npmjs.com/package/gulp-typescript
+
+TypeScript is a superset of JavaScript which primarily provides optional static typing, classes and interfaces. One of the big benefits is to enable IDEs to provide a richer environment for spotting common errors as you type the code.
+
+**gulp-sass**	- https://www.npmjs.com/package/gulp-sass
+
+Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
+**gulp prefixer** - https://www.npmjs.com/package/gulp-autoprefixer
+
+Automitically add prefixers to experimental or nonstandard CSS properties
+
+**gulp-jshint** - https://www.npmjs.com/package/gulp-jshint
+
+JSHint is a static code analysis tool used in software development for checking if JavaScript source code complies with coding rules.
+
+**browsersync** - http://www.browsersync.io/docs/gulp/
+
+BrowserSync is an automation tool that makes web development faster. In the past we've automated a lot of actions like compilation of SASS files, image compression etc. BrowserSync brings a whole new type of automation to the table with batteries included.
+
+**gulp-imagemin** - https://www.npmjs.com/package/gulp-imagemin
+
+Minify PNG, JPEG, GIF and SVG images
+
+**imagemin-pngquant** - https://www.npmjs.com/package/imagemin-pngquant
+
+Works alongside gulp-imagemin to save extra bytes on PNG files: 203.79 kB vs. 164.67 kB (12.9% vs 10.4%) and you don’t notice any quality loss in the asset.
 
 
 # Run Project
