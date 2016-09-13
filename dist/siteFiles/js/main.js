@@ -16,3 +16,6 @@ button.onclick = function () {
 var first = "hello";
 var last = "world";
 var name = `Your name is ${first} ${last}.`;
+(function ($) {
+    $("h2").text("Changed Back");
+})(jQuery);
