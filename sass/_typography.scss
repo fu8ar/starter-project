@@ -12,8 +12,7 @@ $georgia: 		"Georgia";
 h1,h2,h3,h4,h5,h6{@include fonts($roman); text-transform: uppercase; color: $grey;}
 p, ul li, a, small{@include fonts($roman); color: $grey;}
 
-
-$base-font-size: 16px;
+$base-font-size: 62.5%;
 
 html {
     font-size: $base-font-size;
@@ -21,21 +20,31 @@ html {
 
 body{
 	background-color: white;
-	//background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); 
 }
 
-h1{font-size: em(24, 16);}
-h2{font-size: em(22, 16);}
-h3{font-size: em(20, 16);}
-h4{font-size: em(17, 16);}
-h5{font-size: em(15, 16);}
-h6{font-size: em(14, 16);}
-
-p{font-size: em(16, 16);}
-small{
-	font-size: em(12, 16);
-	@include fonts($avenir_black);
+h1{
+    @include rem2px(26); 
+    @include breakpoint(mobile){
+        @include rem2px(30);
+    }
+    @include breakpoint(tablet){
+        @include rem2px(40);
+    }
+    @include breakpoint(website){
+        @include rem2px(60); 
+    }
+    @include breakpoint(large){
+        @include rem2px(80); 
+    }
 }
+h2{ @include rem2px(26); } 
+h3{@include rem2px(20); }
+h4{ @include rem2px(18); }
+
+p{@include rem2px(16);}
+ul li{@include rem2px(16);}
+
+small{ @include rem2px(12);}
 
 
 

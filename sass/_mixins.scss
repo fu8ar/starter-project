@@ -2,10 +2,10 @@
 // Functions & Mixins
 //
 
-// Convert px to em
-$base-font-size: 16px;
-@function em($px, $base: $base-font-size) {
-    @return ($px / $base) * 1em;
+// Calcualte REM with a px fallback
+@mixin rem2px($sizeValue: 1.6) {
+  font-size: $sizeValue + px;
+  font-size: ($sizeValue / 10) + rem;
 }
 
 // Return font-family
@@ -68,7 +68,7 @@ $base-font-size: 16px;
 // Set media query
 @mixin breakpoint($point) {
   @if $point == mobile {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 500px) { @content; }
   }
   @if $point == tablet {
     @media (min-width: 768px) { @content; }
