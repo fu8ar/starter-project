@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     htmlmin = require('gulp-htmlmin'),
+    uglify = require('gulp-uglifyjs'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
@@ -39,6 +40,7 @@ gulp.task('ts', function () {
   return gulp.src('./ts/*.ts')
   .pipe(sourcemaps.init())
   .pipe(ts(tsconfig.compilerOptions))
+  .pipe(uglify())
   .pipe(gulp.dest('dist/siteFiles/js'));
 });
 

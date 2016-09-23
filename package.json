@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.13.4"
+    "gulp-typescript": "^2.13.4",
+    "gulp-uglifyjs": "^0.6.2"
   }
 }
