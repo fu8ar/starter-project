@@ -5,11 +5,6 @@
   @include box-sizing(border-box);
 }
 
-// Background-size support for ie 8 - https://github.com/louisremi/background-size-polyfill
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strike, strong, sub, sup, tt, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figure, figcaption, footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, video {
-	-ms-behavior: url(/backgroundsize.min.htc);
-}
-
 /* Assigning clearfix to classes */
 .clearfix, .group{
   @include clearfix;
