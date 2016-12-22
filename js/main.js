@@ -2,7 +2,7 @@
 
     let test = "Hello";
 
-    $("h2").text(`You had me at ${test}`);
+    $("h2").text(`You had me at ${test}.....`);
 
     var parts = ['shoulders', 'knees'];
     var lyrics = ['heads', ...parts, 'and', 'toes']; 
