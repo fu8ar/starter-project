@@ -4,34 +4,11 @@ This project add functionality top manage and automatically:
 
 1. Creates a local server for you project to run on, using broswersync, which allows multiple screens on multiple devices to view the project simultaneously, as well as see click events and changes to be automically rendered without the need of browser refresh. 
 2. Compiles sass to css, as well as automatically prefixing css3 properties that are not supported by legacy browers.
-4. Compiles Typescript to the Javascript, allowing you to use the latest ECMAScript 2016 Language Specification
+4. Compiles ES6 to ES5 Javascript, allowing you to use the latest ECMAScript 2016 Language Specification
 3. Detects errors and potential problems in JavaScript code and outputs to command line/terminal.
 
 
-First you will need to do the following in order to use.
-
-# Install Ruby and Sass for PC
-
-Ruby comes preinstalled with Mac's, however you need to add Ruby if you are working on a PC. This can be done by using the ruby installer:
-
-http://rubyinstaller.org/
-
-You should also download the dev kit which can be found on the link above. This will give you a Ruby command line powershell application that will let you use the Ruby libraries.
-
-The dev kit needs to be extracted first, perferably inside a folder (that can be anywhere). Then, with command line, cd inside folder and type in following commands:
-
-**'ruby dk.rb init'**
-**'ruby dk.rb install'**
-**'gem install sass'**
-
-** a good reference worth watching is [https://www.youtube.com/watch?v=zPFsgxPb430](https://www.youtube.com/watch?v=zPFsgxPb430) **
-
-# Install Sass for Mac
-
-Using a Mac, sass can be installed throught the terminal by adding the following: **'gem install sass'**
-
-
-# Install Node.js and Node Package Manager
+# Set up Project
 
 Once the project has been downloaded/cloned, cd into the project and type into the command line/terminal 
 
@@ -52,9 +29,9 @@ Normalize.css makes browsers render all elements more consistently and in line w
 
 Build system automating tasks: minification and copying of all JavaScript files, static images, capable of watching files to automatically rerun the task when a file is updated.
 
-**gulp-typescript**	- https://www.npmjs.com/package/gulp-typescript
+**gulp-babel and babel-preset-es2015**	- https://www.npmjs.com/package/gulp-babel
 
-TypeScript is a superset of JavaScript which primarily provides optional static typing, classes and interfaces. One of the big benefits is to enable IDEs to provide a richer environment for spotting common errors as you type the code.
+Use next generation JavaScript, today, plus Babel preset for all es2015 plugins.
 
 **gulp-sass**	- https://www.npmjs.com/package/gulp-sass
 
@@ -63,10 +40,6 @@ Sass is the most mature, stable, and powerful professional grade CSS extension l
 **gulp prefixer** - https://www.npmjs.com/package/gulp-autoprefixer
 
 Automitically add prefixers to experimental or nonstandard CSS properties
-
-**gulp-jshint** - https://www.npmjs.com/package/gulp-jshint
-
-JSHint is a static code analysis tool used in software development for checking if JavaScript source code complies with coding rules.
 
 **browsersync** - http://www.browsersync.io/docs/gulp/
 
