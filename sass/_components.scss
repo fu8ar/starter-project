@@ -1,0 +1,140 @@
+/* Assigning box model */
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+/* Assigning clearfix to classes */
+.clearfix, .group{
+  @include clearfix;
+}
+
+::-webkit-input-placeholder {
+	font-size: em(12px);
+	line-height: 18px;
+	@include fonts($avenir_black);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	font-size: em(12px);
+	line-height: 18px;  
+	@include fonts($avenir_black);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	font-size: em(12px);
+	line-height: 18px;  
+	@include fonts($avenir_black);
+}
+
+:-ms-input-placeholder {  
+	font-size: em(12px);
+	line-height: 18px;  
+	@include fonts($avenir_black);
+}
+
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+hr{
+	clear: both;
+}
+
+strong{}
+span{}
+small{}
+
+a, a:visited{}
+
+ul{
+	li{
+		a{
+			&:hover{
+
+			}
+		}
+	}
+	li.active a{
+		&:hover{
+
+		}
+	}
+}
+
+
+a.button{
+	&:hover{
+
+	}
+}
+
+form{
+	fieldset{}
+	label{}
+	input[type="text"],
+	input[type="email"]{}
+	textarea{}
+	button{
+		&:hover{}
+	}
+}
+
+
+/* ==========================================================================
+   Bootstrap Overwrites
+   ========================================================================== */
+
+.navbar-brand{
+	padding: 0px 6px;
+
+	img{
+		height: 100%;
+		width: auto;
+	}
+}
+
+/* ==========================================================================
+   Custon Classes
+   ========================================================================== */
+
+.left{text-align: left;}
+.center{text-align: center;}
+.right{text-align: right;}
+
+/* ==========================================================================
+   BeingOnine's stylesheet
+   ========================================================================== */
+
+/* Header */
+#header{}
+
+/* Main Naigation */
+#nav{
+	ul{
+		li{
+			a{
+				&:hover{}
+			}
+		}
+		li.active a{
+			&:hover{}
+		}
+	}
+}
+
+/* Main */
+section{
+	article{
+		margin: 20px auto;
+		@include breakpoint(tablet){
+			margin: 40px auto;
+		}
+	}
+}
+
+/* Footer */
+#footer{}
+

@@ -21,9 +21,6 @@ const gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     
-    // Testing compiled javascript
-    jshint = require("gulp-jshint"),
-    
     // Adding sourcemaps to css and js for debugging
     sourcemaps = require('gulp-sourcemaps'),
 
@@ -42,7 +39,7 @@ gulp.task('compile-sass', () => {
       .pipe(sourcemaps.init())
       .pipe(sass({
           includePaths: normaliseCss.includePaths,
-          outputStyle: 'expanded'
+          outputStyle: 'compressed'
       }).on('error', sass.logError))
       .pipe(autoprefixer({
           browsers: ['last 15 versions'],
@@ -86,16 +83,6 @@ gulp.task('compile-concat-js', () => {
 
 /*
   Task 4
-  Testing compilled js files
-*/
-gulp.task("lint", () => {
-    return gulp.src("./dist/siteFiles/js/main.js")
-        .pipe(jshint())
-        .pipe(jshint.reporter("default"));
-});
-
-/*
-  Task 5
   Optimising all images
 */
 gulp.task('optimise-images', () => {
@@ -109,7 +96,7 @@ gulp.task('optimise-images', () => {
 });
 
 /*
-  Task 6
+  Task 5
   Launching a localhost server using Browsersync
   Watching all sass, js, newly saved images to reload tasks
 */
@@ -146,7 +133,6 @@ gulp.task('default', [
   'compile-sass',
   'minify-html',
   'compile-concat-js',
-  'lint',
   'optimise-images',
   'start-server'
 ]);
