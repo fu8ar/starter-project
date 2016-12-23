@@ -10,30 +10,11 @@
   @include clearfix;
 }
 
-::-webkit-input-placeholder {
-	font-size: em(12px);
+@include placeholder {
+    font-size: em(12px);
 	line-height: 18px;
 	@include fonts($avenir_black);
 }
-
-:-moz-placeholder { /* Firefox 18- */
-	font-size: em(12px);
-	line-height: 18px;  
-	@include fonts($avenir_black);
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-	font-size: em(12px);
-	line-height: 18px;  
-	@include fonts($avenir_black);
-}
-
-:-ms-input-placeholder {  
-	font-size: em(12px);
-	line-height: 18px;  
-	@include fonts($avenir_black);
-}
-
 
 /* ==========================================================================
    Base Styles

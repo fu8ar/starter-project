@@ -2,6 +2,13 @@
 // Functions & Mixins
 //
 
+// Setting all elements to box model
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
 // Calcualte REM with a px fallback
 @mixin rem2px($sizeValue: 1.6) {
   font-size: $sizeValue + px;
@@ -14,6 +21,20 @@
   font-weight: normal;
 }
 
+// Responsive font sizing
+@mixin font-sizing($mobile_size, $tablet_size, $desktop_size, $large_size: inherit){
+  @include rem2px($mobile_size);
+  @include breakpoint(tablet){
+    @include rem2px($tablet_size);
+  }
+  @include breakpoint(large){
+    @include rem2px($desktop_size);
+  }
+  @include breakpoint(exlarge){
+    @include rem2px($large_size);
+  }
+}
+
 // Setup clearfix on an element
 @mixin clearfix() {
   *zoom:1;
@@ -21,19 +42,6 @@
   &:after { clear: both; }
 }
 
-// Setting all elements to box model
-@mixin box-sizing($box-model) {
-  -webkit-box-sizing: $box-model; // Safari <= 5
-     -moz-box-sizing: $box-model; // Firefox <= 19
-          box-sizing: $box-model;
-}
-
-// Opacity mixin
-@mixin opacity($opacity) {
-  opacity: $opacity;
-  $opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie); //IE8
-}
 
 // Setting absolute position
 @mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
@@ -42,6 +50,27 @@
   bottom: $bottom;
   left: $left;
   position: absolute;
+}
+
+// placeholder
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+// Standard Padding & background color
+@mixin standard-padding($section_color) {
+  background-color: $section_color;
+  width: 100%;
+  padding: 40px 0;
+  @include breakpoint(tablet){
+    padding: 60px 0;
+  }
+  @include breakpoint(website){
+    padding: 120px 0;
+  }
 }
 
 // Retina Images 
@@ -91,6 +120,10 @@
 // Large size         - 1220px and 1439   - @include breakpoint(large)   {}
 // ExLarge size       - 1440px and above  - @include breakpoint(exlarge) {}
 
-
+@mixin breakpointheight($value) {
+  @media (max-height: $value) { 
+    @content; 
+  }
+}
 
 
