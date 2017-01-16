@@ -6,6 +6,6 @@
 
     var parts = ['shoulders', 'knees'];
     var lyrics = ['heads', ...parts, 'and', 'toes']; 
-    console.log(lyrics);
+    console.log(lyrics);  
 
 })(jQuery);

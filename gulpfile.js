@@ -16,6 +16,7 @@ const gulp = require('gulp'),
     // Compiling es6 to es5 and combining them to one file
     babel = require('gulp-babel'),
     concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
 
     // Optimsing images
     imagemin = require('gulp-imagemin'),
@@ -30,6 +31,36 @@ const gulp = require('gulp'),
 
 /*
   Task 1
+  Launching a localhost server using Browsersync
+  Watching all sass, js, newly saved images to reload tasks
+*/
+gulp.task('start-server', () => {
+
+  // Create LiveReload server
+  browserSync({
+    notify: true,
+    logPrefix: 'Project by BeingOnline',
+    server: {
+      baseDir: "dist",
+      index: "index.html"
+    }
+  });
+
+  gulp.watch('js/**', ['compile-concat-js']);
+  gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
+
+  gulp.watch('temp-images/**', ['optimise-images']);
+  
+  gulp.watch('./sass/*.scss', ['compile-sass']);
+  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
+  
+  gulp.watch('./*.html', ['minify-html']);
+  gulp.watch("./dist/*.html").on('change', reload);
+
+});
+
+/*
+  Task 2
   Compiling sass into css
   Adding prefixes
   Adding source maps
@@ -46,27 +77,33 @@ gulp.task('compile-sass', () => {
           cascade: true
       }))
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest('./dist/siteFiles/css'));
+      .pipe(gulp.dest('./dist/siteFiles/css'))
+      .pipe(browserSync.stream());
 });
 
 /*
-  Task 2
+  Task 3
   Minifying HTML
 */
 gulp.task('minify-html', () => {
     return gulp.src('./*.html')
      .pipe(htmlmin({ collapseWhitespace: true }))
      .pipe(gulp.dest('./dist/'))
+     .pipe(browserSync.stream());
 });
 
 /*
-  Task 3
+  Task 4
   Compiling es6 into es5
   Adding source maps
   Concatenating all js files together
 */
 gulp.task('compile-concat-js', () => {
-    return gulp.src('js/*.js')
+    return gulp.src([
+      'bower_components/query/dist/jquery.jquery.js',
+      'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+      'js/main.js'
+    ])
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['es2015']
@@ -77,12 +114,14 @@ gulp.task('compile-concat-js', () => {
           this.emit('end');
         })
         .pipe(concat('main.js'))
+        .pipe(uglify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/siteFiles/js'));
+        .pipe(gulp.dest('dist/siteFiles/js'))
+        .pipe(browserSync.stream());
 });
 
 /*
-  Task 4
+  Task 5
   Optimising all images
 */
 gulp.task('optimise-images', () => {
@@ -92,48 +131,14 @@ gulp.task('optimise-images', () => {
     svgoPlugins: [{removeViewBox: false}],
     use: [pngquant()]
   }))
-  .pipe(gulp.dest('./dist/siteFiles/images'));
+  .pipe(gulp.dest('./dist/siteFiles/images'))
+  .pipe(browserSync.stream());
 });
 
-/*
-  Task 5
-  Launching a localhost server using Browsersync
-  Watching all sass, js, newly saved images to reload tasks
-*/
-gulp.task('start-server', () => {
-
-  // Create LiveReload server
-  browserSync({
-    notify: true,
-    logPrefix: 'Project by BeingOnline',
-    server: {
-      baseDir: "dist",
-      index: "index.html"
-    }
-  });
-
-  gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
-  gulp.watch('js/**', ['compile-concat-js']);
-
-  gulp.watch('temp-images/**', ['optimise-images']);
-  
-  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
-  gulp.watch('./sass/*.scss', ['compile-sass']);
-  
-  gulp.watch("./dist/*.html").on('change', reload);
-  gulp.watch('./*.html', ['minify-html']);
-
-});
 
 /*
   Starting point
   Loading all tasks on project load.
 */
-gulp.task('default', [
-  'compile-sass',
-  'minify-html',
-  'compile-concat-js',
-  'optimise-images',
-  'start-server'
-]);
+gulp.task('default', ['start-server']);
 
