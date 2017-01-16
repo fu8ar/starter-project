@@ -16,6 +16,9 @@ Once the project has been downloaded/cloned, cd into the project and type into t
 
 This will download all of the gulp packages listed above, into your project.
 
+**'bower install'** 
+
+This will download all of the bower packages listed above, into your project.
 
 # Gulp Packages
 
