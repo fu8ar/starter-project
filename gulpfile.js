@@ -53,6 +53,7 @@ gulp.task('start-server', () => {
   gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
 
   gulp.watch('temp-images/**', ['optimise-images']);
+  gulp.watch("./dist/siteFiles/images/**").on('change', reload);
   
   gulp.watch('./sass/*.scss', ['compile-sass']);
   gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
