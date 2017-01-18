@@ -5,12 +5,15 @@
 */
 const gulp = require('gulp'),
 
+    // decide if in development or production mode
+    util = require('gulp-util'),
+    gulpif = require('gulp-if'),
+
     // provide caching of html files
     cache = require('gulp-cached'),
     
     // Compiling sass to css and optimising 
     sass = require('gulp-sass'),
-    normaliseCss = require('node-normalize-scss'),
     autoprefixer = require('gulp-autoprefixer'),
     
     // Minfying html
@@ -33,6 +36,14 @@ const gulp = require('gulp'),
     reload = browserSync.reload;
 
 /*
+  Gulp Config
+*/
+var config = {
+    production: !!util.env.production,
+    sourceMaps: !util.env.production
+};
+
+/*
   Task 1
   Launching a localhost server using Browsersync
   Watching all sass, js, newly saved images to reload tasks
@@ -49,44 +60,22 @@ gulp.task('start-server', () => {
     }
   });
 
+  gulp.watch('./*.html', ['minify-html']);
+  gulp.watch("./dist/*.html").on('change', reload);
+
+  gulp.watch('./sass/*.scss', ['compile-sass']);
+  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
+
   gulp.watch('./js/**', ['compile-concat-js']);
   gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
 
   gulp.watch('./temp-images/**', ['optimise-images']);
   gulp.watch("./dist/siteFiles/images/**").on('change', reload);
-  
-  gulp.watch('./sass/*.scss', ['compile-sass']);
-  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
-  
-  gulp.watch('./*.html', ['minify-html']);
-  gulp.watch("./dist/*.html").on('change', reload);
 
 });
 
 /*
   Task 2
-  Compiling sass into css
-  Adding prefixes
-  Adding source maps
-*/
-gulp.task('compile-sass', () => {
-    return gulp.src('./sass/*.scss')
-      .pipe(sourcemaps.init())
-      .pipe(sass({
-          includePaths: normaliseCss.includePaths,
-          outputStyle: 'compressed'
-      }).on('error', sass.logError))
-      .pipe(autoprefixer({
-          browsers: ['last 15 versions'],
-          cascade: true
-      }))
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest('./dist/siteFiles/css'))
-      .pipe(browserSync.stream());
-});
-
-/*
-  Task 3
   Minifying HTML
 */
 gulp.task('minify-html', () => {
@@ -101,6 +90,27 @@ gulp.task('minify-html', () => {
 });
 
 /*
+  Task 3
+  Compiling sass into css
+  Adding prefixes
+  Adding source maps
+*/
+gulp.task('compile-sass', () => {
+    return gulp.src('./sass/*.scss')
+      .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+      .pipe(sass({
+          outputStyle: 'compressed'
+      }).on('error', sass.logError))
+      .pipe(autoprefixer({
+          browsers: ['last 15 versions'],
+          cascade: true
+      }))
+      .pipe(gulpif(config.sourceMaps, sourcemaps.write()))
+      .pipe(gulp.dest('./dist/siteFiles/css'))
+      .pipe(browserSync.stream());
+});
+
+/*
   Task 4
   Compiling es6 into es5
   Adding source maps
@@ -108,11 +118,11 @@ gulp.task('minify-html', () => {
 */
 gulp.task('compile-concat-js', () => {
     return gulp.src([
-      'bower_components/query/dist/jquery.jquery.js',
-      'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-      'js/main.js'
+      './bower_components/jquery/dist/jquery.min.js',
+      './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+      './js/main.js'
     ])
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
         .pipe(babel({
             presets: ['es2015']
         }))
@@ -123,7 +133,7 @@ gulp.task('compile-concat-js', () => {
         })
         .pipe(concat('main.js'))
         .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
         .pipe(gulp.dest('dist/siteFiles/js'))
         .pipe(browserSync.stream());
 });
