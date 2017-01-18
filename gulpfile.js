@@ -4,6 +4,9 @@
   NPM Packages
 */
 const gulp = require('gulp'),
+
+    // provide caching of html files
+    cache = require('gulp-cached'),
     
     // Compiling sass to css and optimising 
     sass = require('gulp-sass'),
@@ -87,7 +90,11 @@ gulp.task('compile-sass', () => {
 */
 gulp.task('minify-html', () => {
     return gulp.src('./*.html')
-     .pipe(htmlmin({ collapseWhitespace: true }))
+     .pipe(cache('linting'))
+     .pipe(htmlmin({ 
+        collapseWhitespace: true,
+        removeComments: true  
+      }))
      .pipe(gulp.dest('./dist/'))
      .pipe(browserSync.stream());
 });
