@@ -60,18 +60,6 @@ gulp.task('start-server', () => {
     }
   });
 
-  gulp.watch('./*.html', ['minify-html']);
-  gulp.watch("./dist/*.html").on('change', reload);
-
-  gulp.watch('./sass/*.scss', ['compile-sass']);
-  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
-
-  gulp.watch('./js/**', ['compile-concat-js']);
-  gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
-
-  gulp.watch('./temp-images/**', ['optimise-images']);
-  gulp.watch("./dist/siteFiles/images/**").on('change', reload);
-
 });
 
 /*
@@ -97,6 +85,7 @@ gulp.task('minify-html', () => {
 */
 gulp.task('compile-sass', () => {
     return gulp.src('./sass/*.scss')
+      .pipe(cache('linting'))
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
       .pipe(sass({
           outputStyle: 'compressed'
@@ -122,6 +111,7 @@ gulp.task('compile-concat-js', () => {
       './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
       './js/main.js'
     ])
+        .pipe(cache('linting'))
         .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
         .pipe(babel({
             presets: ['es2015']
@@ -144,6 +134,7 @@ gulp.task('compile-concat-js', () => {
 */
 gulp.task('optimise-images', () => {
   return gulp.src('./temp-images/*')
+  .pipe(cache('linting'))
   .pipe(imagemin({
     progressive: true,
     svgoPlugins: [{removeViewBox: false}],
@@ -155,8 +146,29 @@ gulp.task('optimise-images', () => {
 
 
 /*
+Task 6
+  Watch files 
+*/
+gulp.task('watch', function() {
+
+  gulp.watch('./*.html', ['minify-html']);
+  gulp.watch("./dist/*.html").on('change', reload);
+
+  gulp.watch('./sass/*.scss', ['compile-sass']);
+  gulp.watch("./dist/siteFiles/css/*.css").on('change', reload);
+
+  gulp.watch('./js/**', ['compile-concat-js']);
+  gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
+
+  gulp.watch('temp-images/**', ['optimise-images']); 
+  gulp.watch("./dist/siteFiles/images/**").on('change', reload);
+
+});
+
+
+/*
   Starting point
   Loading all tasks on project load.
 */
-gulp.task('default', ['start-server']);
+gulp.task('default', ['start-server', 'minify-html', 'compile-sass', 'compile-concat-js', 'optimise-images', 'watch']);
 
