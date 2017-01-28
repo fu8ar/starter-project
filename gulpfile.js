@@ -25,6 +25,7 @@ const gulp = require('gulp'),
     uglify = require('gulp-uglify'),
 
     // Optimsing images
+    newer = require('gulp-newer'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     
@@ -85,7 +86,6 @@ gulp.task('minify-html', () => {
 */
 gulp.task('compile-sass', () => {
     return gulp.src('./sass/*.scss')
-      .pipe(cache('linting'))
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
       .pipe(sass({
           outputStyle: 'compressed'
@@ -111,7 +111,6 @@ gulp.task('compile-concat-js', () => {
       './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
       './js/main.js'
     ])
-        .pipe(cache('linting'))
         .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
         .pipe(babel({
             presets: ['es2015']
@@ -132,9 +131,13 @@ gulp.task('compile-concat-js', () => {
   Task 5
   Optimising all images
 */
+
+var imgSrc = 'src/img/**';
+var imgDest = 'build/img';
+
 gulp.task('optimise-images', () => {
   return gulp.src('./temp-images/*')
-  .pipe(cache('linting'))
+  .pipe(newer('./dist/siteFiles/images'))
   .pipe(imagemin({
     progressive: true,
     svgoPlugins: [{removeViewBox: false}],

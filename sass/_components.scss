@@ -11,7 +11,7 @@
 }
 
 @include placeholder {
-    font-size: em(12px);
+    font-size: em(14px);
 	line-height: 18px;
 	@include fonts($avenir_black);
 }
