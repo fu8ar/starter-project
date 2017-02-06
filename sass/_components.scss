@@ -13,77 +13,8 @@
 @include placeholder {
     font-size: em(14px);
 	line-height: 18px;
-	@include fonts($avenir_black);
+	@include fonts($avenir_bold);
 }
-
-/* ==========================================================================
-   Base Styles
-   ========================================================================== */
-
-hr{
-	clear: both;
-}
-
-strong{}
-span{}
-small{}
-
-a, a:visited{}
-
-ul{
-	li{
-		a{
-			&:hover{
-
-			}
-		}
-	}
-	li.active a{
-		&:hover{
-
-		}
-	}
-}
-
-
-a.button{
-	&:hover{
-
-	}
-}
-
-form{
-	fieldset{}
-	label{}
-	input[type="text"],
-	input[type="email"]{}
-	textarea{}
-	button{
-		&:hover{}
-	}
-}
-
-
-/* ==========================================================================
-   Bootstrap Overwrites
-   ========================================================================== */
-
-.navbar-brand{
-	padding: 0px 6px;
-
-	img{
-		height: 100%;
-		width: auto;
-	}
-}
-
-/* ==========================================================================
-   Custon Classes
-   ========================================================================== */
-
-.left{text-align: left;}
-.center{text-align: center;}
-.right{text-align: right;}
 
 /* ==========================================================================
    BeingOnine's stylesheet
@@ -118,4 +49,28 @@ section{
 
 /* Footer */
 #footer{}
+
+
+/* ==========================================================================
+   Bootstrap Overwrites
+   ========================================================================== */
+
+.navbar-brand{
+	padding: 0px 6px;
+
+	img{
+		height: 100%;
+		width: auto;
+	}
+}
+
+/* ==========================================================================
+   Custon Classes
+   ========================================================================== */
+
+.left{text-align: left;}
+.center{text-align: center;}
+.right{text-align: right;}
+
+
 

@@ -2,15 +2,12 @@
    Typography
    ========================================================================== */
 
-// Fonts
-$avenir_black: 	"Avenir Black";
-$roman: 	"Avenir Roman";
-$medium: 	"Avenir Medium";
-$next: 		"Avenir Next Condensed";
-$georgia: 		"Georgia";
+@import url(https://fast.fonts.net/cssapi/177f7279-88e7-4847-a58d-f7cfdf48d987.css);
 
-h1,h2,h3,h4,h5,h6{@include fonts($roman); text-transform: uppercase; color: $grey;}
-p, ul li, a, small{@include fonts($roman); color: $grey;}
+// Fonts
+$avenir: 	"Avenir LT W01_85 Heavy1475544";
+$avenir_bold: "Avenir LT W01_95 Black1475556";
+$georgia: 	"Georgia W01 Regular";
 
 $base-font-size: 62.5%;
 
@@ -19,23 +16,57 @@ html {
 }
 
 body{
-	background-color: white;
+	background-color: $white;
 }
 
-h1{
-    @include font-sizing(26,40,60,80);
+h1, .h1{
+    @include fonts($avenir_bold);
+    @include rem2px(30);
+    @include breakpoint(mobile){
+        @include rem2px(40);
+    }
+    @include breakpoint(tablet){
+        @include rem2px(40);
+    }
+    @include breakpoint(website){
+        @include rem2px(60);
+    }
 }
-h2{ @include rem2px(26); } 
-h3{@include rem2px(20); }
-h4{ @include rem2px(18); }
-
-p{@include rem2px(16);}
-ul li{@include rem2px(16);}
-
-small{ @include rem2px(12);}
-
-
-
-
-
-
+h2, .h2{
+    @include fonts($avenir_bold);
+    @include rem2px(26);
+    @include breakpoint(tablet){
+        @include rem2px(30);
+    }
+    @include breakpoint(website){
+        @include rem2px(32);
+    }
+}
+h3, .h3{
+    @include fonts($georgia);
+    @include rem2px(20);
+    @include breakpoint(tablet){
+        @include rem2px(22);
+    }
+    @include breakpoint(website){
+        @include rem2px(28);
+    }
+}
+h4, .h4{
+	@include fonts($georgia);
+    @include rem2px(18);
+    @include breakpoint(website){
+        @include rem2px(22);
+        line-height: 30px;
+    }
+}
+h6, .h6{
+	@include fonts($georgia);
+    @include rem2px(14);
+    @include breakpoint(tablet){
+        @include rem2px(16);
+    }
+    @include breakpoint(large){
+        @include rem2px(18);
+    }
+}
