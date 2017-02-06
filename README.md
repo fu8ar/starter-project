@@ -27,7 +27,11 @@ To start this project, run the following command:
 
 **'gulp'**
 
+# Run Project in production
 
+This will remove all map files. By default, all css and js will be minfied as standard.
+
+**'gulp --production'**
 
 
 
