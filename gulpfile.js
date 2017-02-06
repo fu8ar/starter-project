@@ -39,10 +39,32 @@ const gulp = require('gulp'),
 /*
   Gulp Config
 */
+
 var config = {
     production: !!util.env.production,
-    sourceMaps: !util.env.production
+    sourceMaps: !util.env.production,
+    html: {
+      src: './*.html',
+      dest: './dist/'
+    },
+    css: {
+      src: './sass/*.scss',
+      dest: './dist/siteFiles/css'
+    },
+    js: {
+      src: [
+        './bower_components/jquery/dist/jquery.min.js',
+        './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        './js/main.js'
+      ],
+      dest: './dist/siteFiles/js'
+    },
+    image: {
+      src: './temp-images/*',
+      dest: './dist/siteFiles/images'
+    }
 };
+
 
 /*
   Task 1
@@ -68,13 +90,13 @@ gulp.task('start-server', () => {
   Minifying HTML
 */
 gulp.task('minify-html', () => {
-    return gulp.src('./*.html')
+    return gulp.src(config.html.src)
      .pipe(cache('linting'))
      .pipe(htmlmin({ 
         collapseWhitespace: true,
         removeComments: true  
       }))
-     .pipe(gulp.dest('./dist/'))
+     .pipe(gulp.dest(config.html.dest))
      .pipe(browserSync.stream());
 });
 
@@ -85,7 +107,7 @@ gulp.task('minify-html', () => {
   Adding source maps
 */
 gulp.task('compile-sass', () => {
-    return gulp.src('./sass/*.scss')
+    return gulp.src(config.css.src)
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
       .pipe(sass({
           outputStyle: 'compressed'
@@ -95,7 +117,7 @@ gulp.task('compile-sass', () => {
           cascade: true
       }))
       .pipe(gulpif(config.sourceMaps, sourcemaps.write()))
-      .pipe(gulp.dest('./dist/siteFiles/css'))
+      .pipe(gulp.dest(config.css.dest))
       .pipe(browserSync.stream());
 });
 
@@ -106,11 +128,7 @@ gulp.task('compile-sass', () => {
   Concatenating all js files together
 */
 gulp.task('compile-concat-js', () => {
-    return gulp.src([
-      './bower_components/jquery/dist/jquery.min.js',
-      './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-      './js/main.js'
-    ])
+    return gulp.src(config.js.src)
         .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
         .pipe(babel({
             presets: ['es2015']
@@ -123,23 +141,24 @@ gulp.task('compile-concat-js', () => {
         .pipe(concat('main.js'))
         .pipe(uglify())
         .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
-        .pipe(gulp.dest('dist/siteFiles/js'))
+        .pipe(gulp.dest(config.js.dest))
         .pipe(browserSync.stream());
 });
+
 
 /*
   Task 5
   Optimising all images
 */
 gulp.task('optimise-images', () => {
-  return gulp.src('./temp-images/*')
-  .pipe(newer('./dist/siteFiles/images'))
+  return gulp.src(config.image.src)
+  .pipe(newer(config.image.dest))
   .pipe(imagemin({
     progressive: true,
     svgoPlugins: [{removeViewBox: false}],
     use: [pngquant()]
   }))
-  .pipe(gulp.dest('./dist/siteFiles/images'))
+  .pipe(gulp.dest(config.image.dest))
   .pipe(browserSync.stream());
 });
 
@@ -169,5 +188,12 @@ gulp.task('watch', function() {
   Starting point
   Loading all tasks on project load.
 */
-gulp.task('default', ['start-server', 'minify-html', 'compile-sass', 'compile-concat-js', 'optimise-images', 'watch']);
+gulp.task('default', [
+  'start-server', 
+  'minify-html', 
+  'compile-sass', 
+  'compile-concat-js', 
+  'optimise-images', 
+  'watch'
+]);
 
