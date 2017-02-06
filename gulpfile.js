@@ -131,10 +131,6 @@ gulp.task('compile-concat-js', () => {
   Task 5
   Optimising all images
 */
-
-var imgSrc = 'src/img/**';
-var imgDest = 'build/img';
-
 gulp.task('optimise-images', () => {
   return gulp.src('./temp-images/*')
   .pipe(newer('./dist/siteFiles/images'))
@@ -154,7 +150,7 @@ Task 6
 */
 gulp.task('watch', function() {
 
-  gulp.watch('./*.html', ['minify-html']);
+  gulp.watch('./*.html', ['minify-html']); 
   gulp.watch("./dist/*.html").on('change', reload);
 
   gulp.watch('./sass/*.scss', ['compile-sass']);
