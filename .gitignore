@@ -46,6 +46,9 @@ jspm_packages
 *.css.map
 
 
+### Img Temp ###
+temp-images/* 
+
 ### Bower ###
 bower_components
 .bower-cache
