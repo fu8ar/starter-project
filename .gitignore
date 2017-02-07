@@ -47,7 +47,11 @@ jspm_packages
 
 
 ### Img Temp ###
-temp-images/* 
+temp-images/*.jpg 
+temp-images/*.jpeg 
+temp-images/*.png 
+temp-images/*.gif
+temp-images/*.svg  
 
 ### Bower ###
 bower_components
