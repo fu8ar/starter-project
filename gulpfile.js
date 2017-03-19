@@ -24,7 +24,7 @@ const gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
 
-    // Optimsing images
+    // Optimising images
     newer = require('gulp-newer'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
@@ -76,7 +76,7 @@ gulp.task('start-server', () => {
   // Create LiveReload server
   browserSync({
     notify: true,
-    logPrefix: 'Project by BeingOnline',
+    logPrefix: 'Project by Paul Matchett',
     server: {
       baseDir: "dist",
       index: "index.html"
