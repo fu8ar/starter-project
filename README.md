@@ -17,10 +17,6 @@ Once the project has been downloaded/cloned, using terminal/command line, cd int
 
 This will download all of the node packages required for your project to run.
 
-**'bower install'** 
-
-This will download all of the bower packages. For example, jQuery and Bootstrap.
-
 # Run Project
 
 To start this project, run the following command:
