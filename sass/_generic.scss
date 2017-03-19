@@ -11,6 +11,9 @@
     // Reset and dependencies
     @import "./node_modules/bootstrap/scss/normalize";
     @import "./node_modules/bootstrap/scss/print";
+    
+    // Global resets to common HTML elements and more for easier usage by Bootstrap.
+    @import "./node_modules/bootstrap/scss/reboot";
 
 
 /*
@@ -21,5 +24,5 @@
     *,
     *:after,
     *:before {
-    @include box-sizing(border-box);
+      @include box-sizing(border-box);
     }
