@@ -4,6 +4,19 @@
     These come with default styling from the browser so we can redefine them here.
 ********************************************/
 
+
+/*
+	Twitter Bootstrap 4 Elements
+*/
+
+    // Core CSS
+    @import "./node_modules/bootstrap/scss/type";
+
+
+/*
+	Project Generic
+*/
+
 html{
     font-size: 16px;
 }
