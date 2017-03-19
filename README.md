@@ -1,12 +1,13 @@
 # starter-project
 
-This project add functionality top manage and automatically:
+This project add functionality to manage and automatically:
 
-1. Creates a local server for your project to run on, using broswersync, which allows multiple screens on multiple devices to view the project simultaneously, as well as see click events and changes to be automically rendered without the need of browser refresh. 
+1. Create a local server for your project to run on, using broswersync, which allows multiple screens on multiple devices to view the project simultaneously, as well as see click events and changes to be automically rendered without the need of browser refresh. 
 2. Compiles sass to css, as well as automatically prefixing css3 properties that are not supported by legacy browers.
 3. Compiles ES6 to ES5 Javascript, allowing you to use the latest ECMAScript 2016 Language Specification
 4. Minifies all html, removing spaces and comments.
 5. Optimsies all images files.
+6. Imports Twitter Bootstrap 4 Alpha 6 and includes it within a ITCSS CSS Architecture layout.
 
 
 # Set up Project
