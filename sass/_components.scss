@@ -1,76 +1,48 @@
-/* Assigning box model */
-*,
-*:after,
-*:before {
-  @include box-sizing(border-box);
-}
-
-/* Assigning clearfix to classes */
-.clearfix, .group{
-  @include clearfix;
-}
-
-@include placeholder {
-    font-size: em(14px);
-	line-height: 18px;
-	@include fonts($avenir_bold);
-}
-
-/* ==========================================================================
-   BeingOnine's stylesheet
-   ========================================================================== */
-
-/* Header */
-.header{}
-
-/* Main Naigation */
-.nav{
-	ul{
-		li{
-			a{
-				&:hover{}
-			}
-		}
-		li.active a{
-			&:hover{}
-		}
-	}
-}
-
-/* Main */
-section{
-	article{
-		margin: 20px auto;
-		@include breakpoint(tablet){
-			margin: 40px auto;
-		}
-	}
-}
-
-/* Footer */
-.footer{}
+/******************************************* 
+    Styles By BeingOnline - COMPONENTS
+	Specific UI components. This is where majority 
+	of our work takes place and our UI components 
+    are often composed of Objects and Components.
+********************************************/
 
 
-/* ==========================================================================
-   Bootstrap Overwrites
-   ========================================================================== */
+/*
+	Twitter Bootstrap 4 Components
+*/
 
-.navbar-brand{
-	padding: 0px 6px;
+	// Components
+	//@import "./node_modules/bootstrap/scss/transitions";
+	//@import "./node_modules/bootstrap/scss/dropdown";
+	//@import "./node_modules/bootstrap/scss/button-group";
+	//@import "./node_modules/bootstrap/scss/input-group";
+	//@import "./node_modules/bootstrap/scss/custom-forms";
+	@import "./node_modules/bootstrap/scss/nav"; 
+	@import "./node_modules/bootstrap/scss/navbar";
+	//@import "./node_modules/bootstrap/scss/card";
+	//@import "./node_modules/bootstrap/scss/breadcrumb";
+	//@import "./node_modules/bootstrap/scss/pagination";
+	//@import "./node_modules/bootstrap/scss/badge";
+	@import "./node_modules/bootstrap/scss/jumbotron"; 
+	//@import "./node_modules/bootstrap/scss/alert";
+	//@import "./node_modules/bootstrap/scss/progress";
+	//@import "./node_modules/bootstrap/scss/media";
+	//@import "./node_modules/bootstrap/scss/list-group";
+	@import "./node_modules/bootstrap/scss/responsive-embed";
+	//@import "./node_modules/bootstrap/scss/close";
 
-	img{
-		height: 100%;
-		width: auto;
-	}
-}
+	// Components w/ JavaScript
+	//@import "./node_modules/bootstrap/scss/modal";
+	//@import "./node_modules/bootstrap/scss/tooltip";
+	//@import "./node_modules/bootstrap/scss/popover";
+	//@import "./node_modules/bootstrap/scss/carousel";
 
-/* ==========================================================================
-   Custon Classes
-   ========================================================================== */
 
-.left{text-align: left;}
-.center{text-align: center;}
-.right{text-align: right;}
+
+/*
+	Project Components
+*/
+
+
 
 
 

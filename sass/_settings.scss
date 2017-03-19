@@ -1,0 +1,12 @@
+/******************************************* 
+    SETTINGS
+    Contain Twitter Bootstrap 4 Alpha 6 plus
+    overwrite settings, font, colors definitions, etc.
+********************************************/
+
+// Core variables and mixins
+@import "./node_modules/bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/mixins";
+
+// overwrite settings
+@import "tb4-custom";  

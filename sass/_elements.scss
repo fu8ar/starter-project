@@ -1,0 +1,54 @@
+/******************************************* 
+    Styles By BeingOnline - ELEMENTS
+    Styling for bare HTML elements (like H1, A, etc.). 
+    These come with default styling from the browser so we can redefine them here.
+********************************************/
+
+html{
+    font-size: 16px;
+}
+
+body{
+	background-color: $white;
+}
+
+h1, .h1{
+    font-size: $font-size-h1;
+}
+h2, .h2{
+    font-size: $font-size-h2;
+}
+h3, .h3{
+    font-size: $font-size-h3;
+}
+h4, .h4{
+    font-size: $font-size-h4;
+}
+h5, .h5{
+	font-size: $font-size-h5;
+}
+h6, .h6{
+	font-size: $font-size-h6;
+}
+
+p, ul li, a, input, select, option, th, td{
+    font-size: $lead-font-size;
+}
+
+small {
+    font-size: $small-font-size;
+}
+
+header{}
+
+nav{}
+
+main{}
+
+aside{}
+
+footer{}
+
+@include placeholder {
+    font-size: $font-size-h6;
+}

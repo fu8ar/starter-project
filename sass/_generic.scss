@@ -1,0 +1,25 @@
+/******************************************* 
+    Styles By BeingOnline - GENERIC
+    Reset and/or normalize styles, box-sizing definition, etc. 
+    This is the first layer which generates actual CSS.
+********************************************/
+
+/*
+	Twitter Bootstrap 4 Generic
+*/
+
+    // Reset and dependencies
+    @import "./node_modules/bootstrap/scss/normalize";
+    @import "./node_modules/bootstrap/scss/print";
+
+
+/*
+	Project Generic
+*/
+
+    /* Assigning box model */
+    *,
+    *:after,
+    *:before {
+    @include box-sizing(border-box);
+    }

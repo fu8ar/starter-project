@@ -53,8 +53,8 @@ var config = {
     },
     js: {
       src: [
-        './bower_components/jquery/dist/jquery.min.js',
-        './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        './node_modules/jquery/dist/jquery.min.js',
+        './node_modules/bootstrap/dist/js/bootstrap.min.js',
         './js/main.js'
       ],
       dest: './dist/siteFiles/js'

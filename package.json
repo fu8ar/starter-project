@@ -33,9 +33,12 @@
     "imagemin-pngquant": "^4.2.0"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "gulp-cached": "^1.1.1",
     "gulp-if": "^2.0.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.8"
+    "gulp-util": "^3.0.8",
+    "install": "^0.8.7",
+    "npm": "^4.4.1"
   }
 }
