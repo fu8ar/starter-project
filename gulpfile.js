@@ -1,8 +1,40 @@
 'use strict'; 
  
-/*
+/******************************************************************
   NPM Packages
-*/
+
+  // Decide if in development or production mode
+  gulp-util         - https://www.npmjs.com/package/gulp-util
+  gulp-if           - https://www.npmjs.com/package/gulp-if
+
+  // Provide caching of html files
+  gulp-cached       - https://www.npmjs.com/package/gulp-cached
+
+  // Compiling sass to css and optimising 
+  gulp-sass         - https://www.npmjs.com/package/gulp-sass
+  gulp-autoprefixer - https://www.npmjs.com/package/gulp-autoprefixer
+
+  // Minfying html
+  gulp-htmlmin      - https://www.npmjs.com/package/gulp-htmlmin
+
+  // Compiling es6 to es5 and combining them to one file and minifying
+  gulp-babel        - https://www.npmjs.com/package/gulp-babel
+  gulp-concat       - https://www.npmjs.com/package/gulp-concat
+  gulp-uglify       - https://www.npmjs.com/package/gulp-uglify
+
+  // Optimising images
+  gulp-newer        - https://www.npmjs.com/package/gulp-newer
+  gulp-imagemin     - https://www.npmjs.com/package/gulp-imagemin
+  imagemin-pngquant - https://www.npmjs.com/package/imagemin-pngquant
+
+  // Adding sourcemaps to css and js for debugging
+  gulp-sourcemaps   - https://www.npmjs.com/package/gulp-sourcemaps
+
+  // Browsersync for localhost server
+  browser-sync      - https://www.npmjs.com/package/browser-sync
+
+*******************************************************************/
+
 const gulp = require('gulp'),
 
     // decide if in development or production mode
@@ -19,7 +51,7 @@ const gulp = require('gulp'),
     // Minfying html
     htmlmin = require('gulp-htmlmin'),
 
-    // Compiling es6 to es5 and combining them to one file
+    // Compiling es6 to es5 and combining them to one file and minifying
     babel = require('gulp-babel'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -36,34 +68,60 @@ const gulp = require('gulp'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
-/*
-  Gulp Config
-*/
+
+/*******************************************************************
+  Gulp Configuration
+*******************************************************************/
 
 var config = {
+
+    /*
+      Development or Production?
+      Command to run in Development: 'gulp'
+      Command to run in Production: 'gulp --production'
+    */
     production: !!util.env.production,
     sourceMaps: !util.env.production,
+
+    // HTML
     html: {
       src: './*.html',
       dest: './dist/'
     },
+
+    // SASS/CSS
     css: {
       src: './sass/*.scss',
       dest: './dist/siteFiles/css'
     },
+
+    // Babel/JS/Libraries
     js: {
       src: [
-        './node_modules/jquery/dist/jquery.min.js',
-        './node_modules/bootstrap/dist/js/bootstrap.min.js',
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/tether/dist/js/tether.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js',
         './js/main.js'
+      ],
+      filesThatDontNeedCompiled: [
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/tether/dist/js/tether.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js'
       ],
       dest: './dist/siteFiles/js'
     },
+
+    // Image Optimization
     image: {
       src: './temp-images/*',
       dest: './dist/siteFiles/images'
     }
 };
+
+
+/******************************************************************
+  Gulp Tasks
+*******************************************************************/
 
 
 /*
@@ -131,7 +189,8 @@ gulp.task('compile-concat-js', () => {
     return gulp.src(config.js.src)
         .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
         .pipe(babel({
-            presets: ['es2015']
+            presets: ['es2015'],
+            ignore: config.js.filesThatDontNeedCompiled
         }))
         .on('error', function(e) {
           console.log('>>> ERROR', e);
@@ -184,10 +243,11 @@ gulp.task('watch', function() {
 });
 
 
-/*
+/******************************************************************
   Starting point
   Loading all tasks on project load.
-*/
+*******************************************************************/
+
 gulp.task('default', [
   'start-server', 
   'minify-html', 
