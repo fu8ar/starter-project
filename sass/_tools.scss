@@ -12,9 +12,9 @@
 }
 
 // Calcualte REM with a px fallback
-@mixin rem2px($sizeValue: 1.6) {
-  font-size: $sizeValue + px;
-  font-size: ($sizeValue / 10) + rem;
+@function convert-px-to-rem($font-size, $default-base: 16){
+  $ret: ($font-size / $default-base) + rem;
+  @return $ret; 
 }
 
 // Return font-family
