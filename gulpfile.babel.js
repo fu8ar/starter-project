@@ -35,38 +35,39 @@
 
 *******************************************************************/
 
-const gulp = require('gulp'),
+// import Gulp library
+import gulp from 'gulp';
 
     // decide if in development or production mode
-    util = require('gulp-util'),
-    gulpif = require('gulp-if'),
+    import util from 'gulp-util';
+    import gulpif from 'gulp-if';
 
     // provide caching of html files
-    cache = require('gulp-cached'),
+    import cache from 'gulp-cached';
     
     // Compiling sass to css and optimising 
-    sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
+    import sass from 'gulp-sass';
+    import autoprefixer from 'gulp-autoprefixer';
     
     // Minfying html
-    htmlmin = require('gulp-htmlmin'),
+    import htmlmin from 'gulp-htmlmin';
 
     // Compiling es6 to es5 and combining them to one file and minifying
-    babel = require('gulp-babel'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
+    import babel from 'gulp-babel';
+    import concat from 'gulp-concat';
+    import uglify from 'gulp-uglify';
 
     // Optimising images
-    newer = require('gulp-newer'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
+    import newer from 'gulp-newer';
+    import imagemin from 'gulp-imagemin';
+    import pngquant from 'imagemin-pngquant';
     
     // Adding sourcemaps to css and js for debugging
-    sourcemaps = require('gulp-sourcemaps'),
+    import sourcemaps from 'gulp-sourcemaps';
 
     // Browsersync for localhost server
-    browserSync = require('browser-sync'),
-    reload = browserSync.reload;
+    import browserSync from 'browser-sync';
+    const reload = browserSync.reload;
 
 
 /*******************************************************************
