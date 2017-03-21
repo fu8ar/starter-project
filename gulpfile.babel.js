@@ -80,24 +80,24 @@ var config = {
       Command to run in Development: 'gulp'
       Command to run in Production: 'gulp --production'
     */
-    production: !!util.env.production,
-    sourceMaps: !util.env.production,
+    isProduction: !!util.env.production,
+    addSourceMaps: !util.env.production,
 
     // HTML
     html: {
-      src: './*.html',
+      start: './*.html',
       dest: './dist/'
     },
 
     // SASS/CSS
     css: {
-      src: './sass/*.scss',
+      start: './sass/*.scss',
       dest: './dist/siteFiles/css'
     },
 
     // Babel/JS/Libraries
     js: {
-      src: [
+      start: [
         './node_modules/jquery/dist/jquery.js',
         './node_modules/tether/dist/js/tether.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
@@ -113,10 +113,11 @@ var config = {
 
     // Image Optimization
     image: {
-      src: './temp-images/*',
+      start: './temp-images/*',
       dest: './dist/siteFiles/images'
     }
 };
+
 
 
 /******************************************************************
@@ -148,7 +149,7 @@ gulp.task('start-server', () => {
   Minifying HTML
 */
 gulp.task('minify-html', () => {
-    return gulp.src(config.html.src)
+    return gulp.src(config.html.start)
      .pipe(cache('linting'))
      .pipe(htmlmin({ 
         collapseWhitespace: true,
@@ -165,8 +166,8 @@ gulp.task('minify-html', () => {
   Adding source maps
 */
 gulp.task('compile-sass', () => {
-    return gulp.src(config.css.src)
-      .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+    return gulp.src(config.css.start)
+      .pipe(gulpif(config.addSourceMaps, sourcemaps.init()))
       .pipe(sass({
           outputStyle: 'compressed'
       }).on('error', sass.logError))
@@ -174,7 +175,7 @@ gulp.task('compile-sass', () => {
           browsers: ['last 15 versions'],
           cascade: true
       }))
-      .pipe(gulpif(config.sourceMaps, sourcemaps.write()))
+      .pipe(gulpif(config.addSourceMaps, sourcemaps.write()))
       .pipe(gulp.dest(config.css.dest))
       .pipe(browserSync.stream());
 });
@@ -186,31 +187,30 @@ gulp.task('compile-sass', () => {
   Concatenating all js files together
 */
 gulp.task('compile-concat-js', () => {
-    return gulp.src(config.js.src)
-        .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+    return gulp.src(config.js.start)
+        .pipe(gulpif(config.addSourceMaps, sourcemaps.init()))
         .pipe(babel({
             presets: ['es2015'],
             ignore: config.js.filesThatDontNeedCompiled
         }))
         .on('error', function(e) {
-          console.log('>>> ERROR', e);
+          util.log('>>> Error', util.colors.bgRed(e));
           // emit here
           this.emit('end');
         })
         .pipe(concat('main.js'))
         .pipe(uglify())
-        .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
+        .pipe(gulpif(config.addSourceMaps, sourcemaps.write('.')))
         .pipe(gulp.dest(config.js.dest))
         .pipe(browserSync.stream());
 });
-
 
 /*
   Task 5
   Optimising all images
 */
 gulp.task('optimise-images', () => {
-  return gulp.src(config.image.src)
+  return gulp.src(config.image.start)
   .pipe(newer(config.image.dest))
   .pipe(imagemin({
     progressive: true,
