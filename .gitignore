@@ -47,8 +47,8 @@ jspm_packages
 
 
 ### Img Temp ###
-temp-images/*.jpg 
-temp-images/*.jpeg 
-temp-images/*.png 
-temp-images/*.gif
-temp-images/*.svg  
+images/*.jpg 
+images/*.jpeg 
+images/*.png 
+images/*.gif
+images/*.svg  

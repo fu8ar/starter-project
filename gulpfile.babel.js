@@ -69,12 +69,16 @@ import gulp from 'gulp';
     import browserSync from 'browser-sync';
     const reload = browserSync.reload;
 
+    import prompt from 'gulp-prompt';
+
 
 /*******************************************************************
   Gulp Configuration
 *******************************************************************/
 
 var config = {
+
+    projectname: "Enter name of project here",
 
     /*
       Development or Production?
@@ -87,6 +91,7 @@ var config = {
     // HTML
     html: {
       start: './*.html',
+      minimise: true,
       dest: './dist/'
     },
 
@@ -114,7 +119,7 @@ var config = {
 
     // Image Optimization
     image: {
-      start: './temp-images/*',
+      start: './images/*',
       dest: './dist/siteFiles/images'
     }
 };
@@ -122,7 +127,7 @@ var config = {
 
 
 /******************************************************************
-  Gulp Tasks
+  Development Gulp Tasks
 *******************************************************************/
 
 
@@ -136,7 +141,7 @@ gulp.task('start-server', () => {
   // Create LiveReload server
   browserSync({
     notify: true,
-    logPrefix: 'Project by Paul Matchett',
+    logPrefix: config.projectname,
     server: {
       baseDir: "dist",
       index: "index.html"
@@ -153,7 +158,7 @@ gulp.task('minify-html', () => {
     return gulp.src(config.html.start)
      .pipe(cache('linting'))
      .pipe(htmlmin({ 
-        collapseWhitespace: true,
+        collapseWhitespace: config.html.minimise,
         removeComments: true  
       }))
      .pipe(gulp.dest(config.html.dest))
@@ -173,7 +178,7 @@ gulp.task('compile-sass', () => {
           outputStyle: 'compressed'
       }).on('error', sass.logError))
       .pipe(autoprefixer({
-          browsers: ['last 15 versions'],
+          browsers: ['last 2 versions'],
           cascade: true
       }))
       .pipe(gulpif(config.addSourceMaps, sourcemaps.write()))
@@ -227,7 +232,7 @@ gulp.task('optimise-images', () => {
 Task 6
   Watch files 
 */
-gulp.task('watch', function() {
+gulp.task('watch', () => {
 
   gulp.watch('./*.html', ['minify-html']); 
   gulp.watch("./dist/*.html").on('change', reload);
@@ -238,16 +243,16 @@ gulp.task('watch', function() {
   gulp.watch('./js/**', ['compile-concat-js']);
   gulp.watch("./dist/siteFiles/js/*.js").on('change', reload);
 
-  gulp.watch('temp-images/**', ['optimise-images']); 
+  gulp.watch('images/**', ['optimise-images']); 
   gulp.watch("./dist/siteFiles/images/**").on('change', reload);
 
 });
 
 
-/******************************************************************
+/*
   Starting point
   Loading all tasks on project load.
-*******************************************************************/
+*/
 
 gulp.task('default', [
   'start-server', 
@@ -258,3 +263,60 @@ gulp.task('default', [
   'watch'
 ]);
 
+
+/******************************************************************
+  Production Gulp Tasks
+*******************************************************************/
+
+/*
+  Task 2
+  Publish Production
+*/
+gulp.task('publish-production', function () {
+  return gulp.src('')
+  .pipe(prompt.prompt(
+      [{
+        type: 'input',
+        message: 'Please enter your username',
+        name: 'username'
+      },
+      {
+        type: 'password',
+        message: 'Please enter your password',
+        name: 'password'
+      }],
+       function(response){
+         util.log('answers ', response.username);
+         util.log('answers ', response.password);
+        //var username = response.username;
+        //var password = response.password;
+    })
+  );
+});
+
+/*
+  Task 1
+  Publish Prompt
+*/
+gulp.task('publish-prompt', () => {
+  gulp.src('./dist/siteFiles/js/main.js')
+    .pipe(prompt.confirm('Are you sure you want to publish your code?'))
+    .pipe(prompt.prompt(
+      [{
+        type: 'list',
+        name: 'filesToPublish',
+        message: 'Select what you want to pubish',
+        choices: ['All', 'JavaScript', 'CSS', 'Images']
+     },
+     {
+        type: 'list',
+        name: 'publishLocation',
+        message: 'Select where you want to publish to',
+        choices: ['Staging', 'Production']
+     }],
+     function(res){
+       util.log('answers ', res.filesToPublish);
+       util.log('answers ', res.publishLocation);
+       gulp.start('publish-production');
+    }));
+});
