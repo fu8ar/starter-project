@@ -69,6 +69,7 @@ import gulp from 'gulp';
     import browserSync from 'browser-sync';
     const reload = browserSync.reload;
 
+    // https://www.npmjs.com/package/gulp-prompt
     import prompt from 'gulp-prompt';
 
 
@@ -121,6 +122,12 @@ var config = {
     image: {
       start: './images/*',
       dest: './dist/siteFiles/images'
+    },
+
+    // Publish Default Tettings
+    publishConfig: {
+      filesToPublish: 'css',
+      publishTo: 'Staged'
     }
 };
 
@@ -288,10 +295,12 @@ gulp.task('publish-production', function () {
        function(response){
          util.log('answers ', response.username);
          util.log('answers ', response.password);
-        //var username = response.username;
-        //var password = response.password;
-    })
-  );
+         util.log('file:  ', config.publishConfig.filesToPublish);
+         util.log('location:  ', config.publishConfig.publishTo);
+
+      })
+  )
+  .pipe(prompt.confirm('Are you sure you want to publish your code?'))
 });
 
 /*
@@ -315,8 +324,11 @@ gulp.task('publish-prompt', () => {
         choices: ['Staging', 'Production']
      }],
      function(res){
-       util.log('answers ', res.filesToPublish);
-       util.log('answers ', res.publishLocation);
-       gulp.start('publish-production');
+       config.publishConfig.filesToPublish = res.filesToPublish;
+       config.publishConfig.publishTo = res.publishLocation;
+
+       if(config.publishConfig.publishTo == 'Production'){
+        gulp.start('publish-production');
+       }
     }));
 });
