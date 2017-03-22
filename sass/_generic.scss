@@ -5,16 +5,10 @@
 ********************************************/
 
 /*
-	Twitter Bootstrap 4 Generic
+	Twitter Bootstrap 3 Generic
 */
 
-    // Reset and dependencies
-    @import "./node_modules/bootstrap/scss/normalize";
-    @import "./node_modules/bootstrap/scss/print";
-    
-    // Global resets to common HTML elements and more for easier usage by Bootstrap.
-    @import "./node_modules/bootstrap/scss/reboot";
-
+    @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"); 
 
 /*
 	Project Generic

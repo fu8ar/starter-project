@@ -3,18 +3,7 @@
     Contain Twitter Bootstrap 4 Alpha 6 plus
     overwrite settings, font, colors definitions, etc.
 ********************************************/
-
-
-
-/*
-	Twitter Bootstrap 4 Settings
-*/
-
-// Core variables and mixins
-@import "./node_modules/bootstrap/scss/variables";
-@import "./node_modules/bootstrap/scss/mixins";
-
-
+    
 /*
 	Project Settings
 */
@@ -52,19 +41,6 @@ $brand-danger:              $red;
 $brand-inverse:             $gray-dark;
 
 
-// Options
-//
-// Quickly modify global styling by enabling or disabling optional features.
-
-$enable-rounded:            true;
-$enable-shadows:            false;
-$enable-gradients:          false;
-$enable-transitions:        true;
-$enable-hover-media-query:  false;
-$enable-grid-classes:       true;
-$enable-print-styles:       true;
-
-
 // Links
 //
 // Style anchor elements.
@@ -91,7 +67,7 @@ $font-family-serif:      Georgia, "Times New Roman", Times, serif;
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base:       $font-family-sans-serif;
 
-$font-size-base: convert-px-to-rem(16); // Assumes the browser default, typically `16px` 
+$font-size-base: 1rem;  // Assumes the browser default, typically `16px` 
 $font-size-lg:   convert-px-to-rem(20);
 $font-size-sm:   convert-px-to-rem(14);
 $font-size-xs:   convert-px-to-rem(12);
@@ -102,14 +78,13 @@ $font-weight-bold: bold;
 $font-weight-base: $font-weight-normal;
 $line-height-base: 1.5;
 
-$font-size-h1: convert-px-to-rem(40);
+$font-size-h1: convert-px-to-rem(40); 
 $font-size-h2: convert-px-to-rem(32);
 $font-size-h3: convert-px-to-rem(28);
 $font-size-h4: convert-px-to-rem(24);
 $font-size-h5: convert-px-to-rem(20);
 $font-size-h6: convert-px-to-rem(16);
 
-$headings-margin-bottom: ($spacer / 2);
 $headings-font-family:   inherit;
 $headings-font-weight:   500;
 $headings-line-height:   1.1;
