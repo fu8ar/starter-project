@@ -71,6 +71,8 @@ import gulp from 'gulp';
 
     // https://www.npmjs.com/package/gulp-prompt
     import prompt from 'gulp-prompt';
+    // https://github.com/morris/vinyl-ftp
+    import ftp from 'vinyl-ftp';
 
 
 /*******************************************************************
@@ -126,11 +128,24 @@ var config = {
 
     // Publish Default Tettings
     publishConfig: {
-      filesToPublish: 'css',
-      publishTo: 'Staged'
+      filesToPublish: 'css',// this is a default value
+      filesRoutes: {// where the files live on local
+        css: 'dist/siteFiles/css/*.css',
+        javascript: 'dist/siteFiles/js/*.js',
+        images: 'dist/siteFiles/images/*.{png,gif,jpg}',
+        all: [// send multiple file types and folders
+          'dist/siteFiles/css/*.css',
+          'dist/siteFiles/js/*.js',
+          'dist/siteFiles/images/*.{png,gif,jpg}'
+        ]
+      },
+      publishTo: 'Staged',// this is a default value
+      fileLocations: {// where the files end up
+        staging: '/private_html',
+        production: '/public_html'
+      }
     }
 };
-
 
 
 /******************************************************************
@@ -275,14 +290,37 @@ gulp.task('default', [
   Production Gulp Tasks
 *******************************************************************/
 
+function filesToPublish(selectedOption){
+  let ret;
+  if(selectedOption == 'css'){
+    ret = [config.publishConfig.filesRoutes.css];
+  }
+  else if(selectedOption == 'JavaScript'){
+    ret = [config.publishConfig.filesRoutes.javascript];
+  }
+  else if(selectedOption == 'Images'){
+    ret = [config.publishConfig.filesRoutes.images];
+  }
+  else{
+    ret = config.publishConfig.filesRoutes.all;
+  }
+  return ret;
+}
 /*
-  Task 2
+  Task 3
   Publish Production
 */
 gulp.task('publish-production', function () {
-  return gulp.src('')
-  .pipe(prompt.prompt(
+
+  var globs = filesToPublish(config.publishConfig.filesToPublish );
+
+  return gulp.src( globs, { base: '.', buffer: false } )
+    .pipe(prompt.prompt(
       [{
+        type: 'input',
+        message: 'Please enter your hostname',
+        name: 'hostname'
+      },{
         type: 'input',
         message: 'Please enter your username',
         name: 'username'
@@ -293,14 +331,42 @@ gulp.task('publish-production', function () {
         name: 'password'
       }],
        function(response){
-         util.log('answers ', response.username);
-         util.log('answers ', response.password);
-         util.log('file:  ', config.publishConfig.filesToPublish);
-         util.log('location:  ', config.publishConfig.publishTo);
-
+         conn = ftp.create( {
+           host:     response.hostname,
+           user:     response.username,
+           password: response.password,
+           parallel: 10,
+           log:      util.log
+        });
       })
   )
   .pipe(prompt.confirm('Are you sure you want to publish your code?'))
+	.pipe( conn.newer( config.publishConfig.fileLocations.production ) ) // only upload newer files
+	.pipe( conn.dest( config.publishConfig.fileLocations.production ) );
+  
+});
+
+
+/*
+  Task 2
+  Publish Staging
+*/
+gulp.task('publish-staging', function () {
+
+  var conn = ftp.create( {
+    host:     'ftp.paulmatchett.co.uk',
+    user:     'paulmatchett.co.uk',
+    password: 'Nanook5865',
+    parallel: 10,
+    log:      util.log
+  });
+
+  var globs = filesToPublish(config.publishConfig.filesToPublish );
+
+  return gulp.src( globs, { base: '.', buffer: false } )
+		.pipe( conn.newer( config.publishConfig.fileLocations.staging ) ) // only upload newer files
+		.pipe( conn.dest( config.publishConfig.fileLocations.staging ) );
+  
 });
 
 /*
@@ -328,7 +394,10 @@ gulp.task('publish-prompt', () => {
        config.publishConfig.publishTo = res.publishLocation;
 
        if(config.publishConfig.publishTo == 'Production'){
-        gulp.start('publish-production');
+         gulp.start('publish-production');
+       }
+       else{
+         gulp.start('publish-staging');
        }
     }));
 });

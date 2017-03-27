@@ -40,6 +40,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.8",
     "install": "^0.8.7",
-    "npm": "^4.4.1"
+    "npm": "^4.4.1",
+    "vinyl-ftp": "^0.6.0"
   }
 }
