@@ -4,12 +4,9 @@
     It’s important not to output any CSS in the first 2 layers.
 ********************************************/
 
-// Setting all elements to box model
-@mixin box-sizing($box-model) {
-  -webkit-box-sizing: $box-model; // Safari <= 5
-     -moz-box-sizing: $box-model; // Firefox <= 19
-          box-sizing: $box-model;
-}
+/*
+  Functions
+*/
 
 // Calcualte REM with a px fallback
 @function convert-px-to-rem($font-size, $default-base: 16){
@@ -17,10 +14,16 @@
   @return $ret; 
 }
 
-// Return font-family
-@mixin fonts($font-types){
-  font-family: $font-types, helvetica, arial, serif;
-  font-weight: normal;
+/*
+  Mixins
+*/
+
+
+// Setting all elements to box model
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
 }
 
 // Setup clearfix on an element
@@ -30,6 +33,12 @@
   &:after { clear: both; }
 }
 
+
+// Return font-family
+@mixin fonts($font-types){
+  font-family: $font-types, helvetica, arial, serif;
+  font-weight: normal;
+}
 
 // Setting absolute position
 @mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {

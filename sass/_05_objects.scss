@@ -1,0 +1,106 @@
+/******************************************* 
+    Styles By BeingOnline - OBJECTS
+    Class-based selectors which define undecorated design patterns, 
+    for example media object known from OOCSS.
+********************************************/
+
+
+/*
+	Twitter Bootstrap 4 Objects
+*/
+
+    // Core CSS
+    //@import "./node_modules/bootstrap/scss/images";
+    //@import "./node_modules/bootstrap/scss/code";
+    @import "./node_modules/bootstrap/scss/grid";
+    //@import "./node_modules/bootstrap/scss/tables";
+    @import "./node_modules/bootstrap/scss/forms";
+    @import "./node_modules/bootstrap/scss/buttons";
+
+
+/*
+	Project Objects
+*/
+
+
+/**
+ * The flag object is a design pattern similar to the media object, however it
+ * utilises `display: table[-cell];` to give us control over the vertical
+ * alignments of the text and image.
+ */
+.o-flag {
+  display: table; 
+  //width: 100%; 
+  border-spacing: 0;
+
+  &__img,
+  &__body {
+    display: table-cell;
+    vertical-align: middle; 
+  }
+}
+
+/**
+ * Place any image- and text-like content side-by-side, as per:
+ * http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code
+ */
+
+.o-media {
+    @include clearfix();
+    display: block;
+  
+    &__img {
+        float: left;
+        > img {
+            display: block;
+        }
+    }
+
+    &__body {
+        overflow: hidden;
+        display: block;
+
+        &,
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &--reverse{
+        > .o-media__img {
+            float: right;
+            margin-right: 0;
+        }
+    }
+
+}
+
+/**
+ * Strip list-like appearance from lists by removing their bullets, and any
+ * indentation.
+ *
+ * Note: Declaring the item-class might not be necessary everywhere but
+ * is for example in <dl> lists for the <dd> childs.
+ */
+
+.o-list-bare {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  &__item {
+    margin-left: 0;
+  }
+}
+
+/**
+ * The pack object simply causes any number of elements pack up horizontally to
+ * automatically fill an equal, fluid width of their parent.
+ *
+ */
+
+.o-pack {
+  width: 100%;
+  margin-left: 0;
+  display: table;
+  table-layout: fixed;
+}

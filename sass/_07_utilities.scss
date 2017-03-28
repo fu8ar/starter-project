@@ -1,0 +1,123 @@
+/******************************************* 
+    Styles By BeingOnline - UTILITIES
+	Styling for bare HTML elements (like H1, A, etc.). 
+    These come with default styling from the browser so we can redefine them here.
+********************************************/
+
+
+/*
+	Twitter Bootstrap 4 Utilities
+*/
+
+// Utility classes
+@import "./node_modules/bootstrap/scss/utilities";
+
+
+/* 
+    Bootstrap Overwrites 
+*/
+
+
+
+/*
+	Project Utilities
+*/
+
+
+    /* 
+        Assigning clearfix to classes 
+    */
+    .clearfix, .group{
+    @include clearfix();
+    }
+
+
+    /* 
+        Alignment 
+    */
+    .u-left{
+        text-align: left;
+    }   
+    .u-center{
+        text-align: center;
+        &--mobile-only{
+           text-align: center;
+           @include media-breakpoint-up(sm){
+                text-align: left;
+            } 
+        }
+        &--desktop-only{
+            @include media-breakpoint-up(sm){
+                text-align: center;
+            }
+        }
+    } 
+    .u-right{
+        text-align: right;
+    }
+
+
+    /*
+        Mobile / Web Toggle
+    */
+    .u-mobile-only{
+        display: block !important;
+        @include media-breakpoint-up(sm){
+            display: none !important;
+        }
+
+        &--inline{
+            display: inline-block !important;
+            @include media-breakpoint-up(sm){
+                display: none !important;
+            }
+        }
+    }
+
+    .u-web-only{
+        display: none !important;
+        @include media-breakpoint-up(sm){
+            display: block !important;
+        }
+        &--inline{
+            display: none !important;
+            @include media-breakpoint-up(sm){
+                display: inline-block !important;
+            }
+        }
+    }
+
+
+    /*
+        Font Weights
+    */
+    // .u-light{
+    //     font-weight: $font-weight-normal;
+    //     @include fonts($futura_light);
+    // }
+    // .u-medium{
+    //     font-weight: $font-weight-normal;
+    //     @include fonts($futura_medium);
+    // }
+    // .u-heavy{
+    //     font-weight: $font-weight-normal;
+    //     @include fonts($futura_heavy);
+    // }
+
+    /*
+        Font Styling
+    */
+    .u-uppercase{
+        text-transform: uppercase;
+    }
+
+    /*
+        No Margin
+    */
+    .u-no-margin{
+        margin: 0;
+    }
+
+    /*
+        Font colors 
+    */
