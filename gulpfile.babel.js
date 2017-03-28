@@ -277,9 +277,9 @@ gulp.task('default', [
 
     // ftp details
     hosting: {
-      host:     'ftp.aaaaaaa.co.uk',
-      user:     'bbbbbbb.co.uk',
-      password: 'cccccccc',
+      host:     'ftp.hostname.co.uk',
+      user:     'username.co.uk',
+      password: 'password',
     },
 
     // where the files end up
@@ -293,13 +293,13 @@ gulp.task('default', [
 
     // where the files live on local
     filesRoutes: {
-      css: 'dist/siteFiles/css/*.css',
-      javascript: 'dist/siteFiles/js/*.js',
-      images: 'dist/siteFiles/images/*.{png,gif,jpg}',
+      css: './dist/siteFiles/css/*.css',
+      javascript: './dist/siteFiles/js/*.js',
+      images: './dist/siteFiles/images/*.{png,gif,jpg}',
       all: [
-        'dist/siteFiles/css/*.css',
-        'dist/siteFiles/js/*.js',
-        'dist/siteFiles/images/*.{png,gif,jpg}'
+        './dist/siteFiles/css/*.css',
+        './dist/siteFiles/js/*.js',
+        './dist/siteFiles/images/*.{png,gif,jpg}'
       ]
     }
   }
@@ -430,7 +430,7 @@ gulp.task('publish',
   var dest = uploadTo();
 
   // gulp ftp
-  return gulp.src( globs, { base: '.', buffer: false } )
+  return gulp.src( globs, { base: './dist/', buffer: false } )
 		.pipe( conn.newer( dest ) ) // only upload newer files
 		.pipe( conn.dest( dest ) );
   
