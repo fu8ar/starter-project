@@ -30,6 +30,19 @@ This will remove all map files. By default, all css and js will be minfied as st
 
 **'gulp --production'**
 
+# Publish Project
+
+This project can be uploaded to a staging and production environment.
+
+To upload to staging:
+
+**'gulp publish'**
+
+To upload to production:
+
+**'gulp publish --production'**
+
+
 
 
 

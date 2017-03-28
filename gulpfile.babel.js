@@ -126,25 +126,6 @@ var config = {
       dest: './dist/siteFiles/images'
     },
 
-    // Publish Default Tettings
-    publishConfig: {
-      filesToPublish: 'css',// this is a default value
-      filesRoutes: {// where the files live on local
-        css: 'dist/siteFiles/css/*.css',
-        javascript: 'dist/siteFiles/js/*.js',
-        images: 'dist/siteFiles/images/*.{png,gif,jpg}',
-        all: [// send multiple file types and folders
-          'dist/siteFiles/css/*.css',
-          'dist/siteFiles/js/*.js',
-          'dist/siteFiles/images/*.{png,gif,jpg}'
-        ]
-      },
-      publishTo: 'Staged',// this is a default value
-      fileLocations: {// where the files end up
-        staging: '/private_html',
-        production: '/public_html'
-      }
-    }
 };
 
 
@@ -290,91 +271,46 @@ gulp.task('default', [
   Production Gulp Tasks
 *******************************************************************/
 
-function filesToPublish(selectedOption){
-  let ret;
-  if(selectedOption == 'css'){
-    ret = [config.publishConfig.filesRoutes.css];
-  }
-  else if(selectedOption == 'JavaScript'){
-    ret = [config.publishConfig.filesRoutes.javascript];
-  }
-  else if(selectedOption == 'Images'){
-    ret = [config.publishConfig.filesRoutes.images];
-  }
-  else{
-    ret = config.publishConfig.filesRoutes.all;
-  }
-  return ret;
-}
-/*
-  Task 3
-  Publish Production
-*/
-gulp.task('publish-production', function () {
-
-  var globs = filesToPublish(config.publishConfig.filesToPublish );
-
-  return gulp.src( globs, { base: '.', buffer: false } )
-    .pipe(prompt.prompt(
-      [{
-        type: 'input',
-        message: 'Please enter your hostname',
-        name: 'hostname'
-      },{
-        type: 'input',
-        message: 'Please enter your username',
-        name: 'username'
-      },
-      {
-        type: 'password',
-        message: 'Please enter your password',
-        name: 'password'
-      }],
-       function(response){
-         conn = ftp.create( {
-           host:     response.hostname,
-           user:     response.username,
-           password: response.password,
-           parallel: 10,
-           log:      util.log
-        });
-      })
-  )
-  .pipe(prompt.confirm('Are you sure you want to publish your code?'))
-	.pipe( conn.newer( config.publishConfig.fileLocations.production ) ) // only upload newer files
-	.pipe( conn.dest( config.publishConfig.fileLocations.production ) );
   
-});
+  // Publish Default Tettings
+  let publishConfig = {
 
+    // ftp details
+    hosting: {
+      host:     'ftp.aaaaaaa.co.uk',
+      user:     'bbbbbbb.co.uk',
+      password: 'cccccccc',
+    },
 
-/*
-  Task 2
-  Publish Staging
-*/
-gulp.task('publish-staging', function () {
+    // where the files end up
+    fileLocations: {
+      staging: '/private_html',
+      production: '/public_html'
+    },
 
-  var conn = ftp.create( {
-    host:     'ftp.paulmatchett.co.uk',
-    user:     'paulmatchett.co.uk',
-    password: 'Nanook5865',
-    parallel: 10,
-    log:      util.log
-  });
+    // this is a default value
+    filesToPublish: 'css',
 
-  var globs = filesToPublish(config.publishConfig.filesToPublish );
-
-  return gulp.src( globs, { base: '.', buffer: false } )
-		.pipe( conn.newer( config.publishConfig.fileLocations.staging ) ) // only upload newer files
-		.pipe( conn.dest( config.publishConfig.fileLocations.staging ) );
-  
-});
+    // where the files live on local
+    filesRoutes: {
+      css: 'dist/siteFiles/css/*.css',
+      javascript: 'dist/siteFiles/js/*.js',
+      images: 'dist/siteFiles/images/*.{png,gif,jpg}',
+      all: [
+        'dist/siteFiles/css/*.css',
+        'dist/siteFiles/js/*.js',
+        'dist/siteFiles/images/*.{png,gif,jpg}'
+      ]
+    }
+  }
 
 /*
   Task 1
-  Publish Prompt
+  Publish Selections and FTP details
 */
-gulp.task('publish-prompt', () => {
-  gulp.src('./dist/siteFiles/js/main.js')
+gulp.task('prompt',  () => {
+
+  return gulp.src('./dist/siteFiles/js/main.js')
     .pipe(prompt.confirm('Are you sure you want to publish your code?'))
     .pipe(prompt.prompt(
       [{
@@ -382,22 +318,120 @@ gulp.task('publish-prompt', () => {
         name: 'filesToPublish',
         message: 'Select what you want to pubish',
         choices: ['All', 'JavaScript', 'CSS', 'Images']
-     },
-     {
-        type: 'list',
-        name: 'publishLocation',
-        message: 'Select where you want to publish to',
-        choices: ['Staging', 'Production']
      }],
      function(res){
-       config.publishConfig.filesToPublish = res.filesToPublish;
-       config.publishConfig.publishTo = res.publishLocation;
+       publishConfig.filesToPublish = res.filesToPublish;
+    }))
+    .pipe(gulpif(config.isProduction, prompt.prompt(
+      [
+        {
+          type: 'input',
+          message: 'Please enter your hostname',
+          name: 'hostname',
+          validate: function(hostname){
+            if(hostname !== publishConfig.hosting.host){
+              util.log('Hostname is incorrect: ', util.colors.bgRed(hostname));
+              return false;
+            }
+            return true;
+          }
+        },
+        
+        {
+          type: 'input',
+          message: 'Please enter your username',
+          name: 'username',
+          validate: function(username){
+            if(username !== publishConfig.hosting.user){
+              util.log('Username is incorrect: ', util.colors.bgRed(username));
+              return false;
+            }
+            return true;
+          }
+        },
+      
+        {
+          type: 'password',
+          message: 'Please enter your password',
+          name: 'password',
+          validate: function(password){
+            if(password !== publishConfig.hosting.password){
+              util.log('Password is incorrect: ', util.colors.bgRed(password));
+              return false;
+            }
+            return true;
+          }
+        }
+      ],
+      function(response){
+        // store new updated ftp details
+        publishConfig.hosting.host = response.hostname;
+        publishConfig.hosting.username = response.username;
+        publishConfig.hosting.password = response.password;
+      }
+    )));
+});
 
-       if(config.publishConfig.publishTo == 'Production'){
-         gulp.start('publish-production');
-       }
-       else{
-         gulp.start('publish-staging');
-       }
-    }));
+/*
+  Task 2
+  Publish via FTP
+*/
+
+function ftpConfig(){
+  let ret = ftp.create( {
+    host:     publishConfig.hosting.host,
+    user:     publishConfig.hosting.user,
+    password: publishConfig.hosting.password,
+    parallel: 10,
+    log:      util.log
+  });
+  return ret;
+}
+
+function filesToPublish(selectedOption){
+  let ret;
+  if(selectedOption == 'CSS'){
+    ret = [publishConfig.filesRoutes.css];
+  }
+  else if(selectedOption == 'JavaScript'){
+    ret = [publishConfig.filesRoutes.javascript];
+  }
+  else if(selectedOption == 'Images'){
+    ret = [publishConfig.filesRoutes.images];
+  }
+  else{
+    ret = publishConfig.filesRoutes.all;
+  }
+  return ret;
+}
+
+function uploadTo(){
+  let ret;
+  const fileLocations = publishConfig.fileLocations;
+  ret = config.isProduction ? fileLocations.production : fileLocations.staging;
+  return ret;
+}
+
+gulp.task('publish', 
+  ['minify-html', 
+  'compile-sass', 
+  'compile-concat-js', 
+  'optimise-images',
+  'prompt'], function () {
+
+  // ftp settings
+  var conn = ftpConfig();
+
+  // files and folders to upload
+  var selectedFiles = publishConfig.filesToPublish;
+  var globs = filesToPublish(selectedFiles);
+
+  // upload to staging or production
+  var dest = uploadTo();
+
+  // gulp ftp
+  return gulp.src( globs, { base: '.', buffer: false } )
+		.pipe( conn.newer( dest ) ) // only upload newer files
+		.pipe( conn.dest( dest ) );
+  
 });
