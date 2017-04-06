@@ -33,6 +33,10 @@
   // Browsersync for localhost server
   browser-sync      - https://www.npmjs.com/package/browser-sync
 
+  // Ftp Publishing CSS, Images, JS to Staging or Live 
+  gulp-prompt - https://www.npmjs.com/package/gulp-prompt
+  vinyl-ftp - https://www.npmjs.com/package/vinyl-ftp
+
 *******************************************************************/
 
 // import Gulp library
@@ -69,9 +73,8 @@ import gulp from 'gulp';
     import browserSync from 'browser-sync';
     const reload = browserSync.reload;
 
-    // https://www.npmjs.com/package/gulp-prompt
+    // Ftp Publishing CSS, Images, JS to Staging or Live 
     import prompt from 'gulp-prompt';
-    // https://github.com/morris/vinyl-ftp
     import ftp from 'vinyl-ftp';
 
 
@@ -362,13 +365,13 @@ gulp.task('prompt',  () => {
             return true;
           }
         }
-      ],
-      function(response){
-        // store new updated ftp details
-        publishConfig.hosting.host = response.hostname;
-        publishConfig.hosting.username = response.username;
-        publishConfig.hosting.password = response.password;
-      }
+      ]//,
+      // function(response){
+      //   // store new updated ftp details
+      //   publishConfig.hosting.host = response.hostname;
+      //   publishConfig.hosting.username = response.username;
+      //   publishConfig.hosting.password = response.password;
+      // }
     )));
 });
 
@@ -390,6 +393,8 @@ function ftpConfig(){
 
 function filesToPublish(selectedOption){
   let ret;
+  publishConfig.tasks = [];
+
   if(selectedOption == 'CSS'){
     ret = [publishConfig.filesRoutes.css];
   }
@@ -412,12 +417,7 @@ function uploadTo(){
   return ret;
 }
 
-gulp.task('publish', 
-  ['minify-html', 
-  'compile-sass', 
-  'compile-concat-js', 
-  'optimise-images',
-  'prompt'], function () {
+gulp.task('publish', ['compile-sass', 'compile-concat-js', 'optimise-images', 'prompt'], function () {
 
   // ftp settings
   var conn = ftpConfig();
