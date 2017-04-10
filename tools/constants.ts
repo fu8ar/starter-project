@@ -1,5 +1,3 @@
-import {join} from 'path'; 
-
 // NPM Dev Dependencies
 
 // png plugin
