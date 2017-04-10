@@ -111,6 +111,10 @@
         text-transform: uppercase;
     }
 
+    .u-lowercase{
+        text-transform: lowercase;
+    }
+
     /*
         No Margin
     */
@@ -119,5 +123,28 @@
     }
 
     /*
-        Font colors 
+        No Padding
     */
+    .u-no-padding{
+        padding: 0;
+    }
+
+    /*
+        Font color 
+    */
+    .u-primary{
+        color: $brand-primary;
+    }
+    .u-secondary{
+        color: $brand-success;
+    }
+    .u-tertiary{
+        color: $brand-info;
+    }
+
+    /*
+        Relative
+    */
+    .u-rel{
+        position: relative;
+    }
