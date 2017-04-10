@@ -1,8 +1,8 @@
 (function ($) {
 
-    let test = "Hello";
+    let test = "Hello ";
 
-    $("h2").text(`${test} World........`); 
+    $("h1").text(`${test} Dave`);     
 
     var parts = ['shoulders', 'knees'];
     var lyrics = ['heads', ...parts, 'and', 'toes']; 
