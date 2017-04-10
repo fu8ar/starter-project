@@ -14,9 +14,6 @@
 // import Gulp library
 import { task, src } from 'gulp';
 
-// Project Settings
-import { HTMLConfig, HTML_MINIFIER_OPTIONS } from '../constants';
-
 // Task
 task('default', [
   'start-server', 
