@@ -11,7 +11,7 @@
   2.    Upload files vai ftp to staging or production
         vinyl-ftp     - https://www.npmjs.com/package/vinyl-ftp
 
-  2.    Decide if in development or production mode
+  3.    Decide if in development or production mode
         gulp-util     - https://www.npmjs.com/package/gulp-util
         gulp-if       - https://www.npmjs.com/package/gulp-if
 

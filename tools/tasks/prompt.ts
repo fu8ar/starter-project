@@ -29,7 +29,12 @@ const prompt = require('gulp-prompt');
 const util = require('gulp-util');
 const gulpif = require('gulp-if');
 
-task('prompt',  () => {
+task('prompt',  [
+  'optimise-images',
+  'compile-sass', 
+  'compile-vendor',
+  'compile-typescript'
+  ], () => {
 
   return src('./dist/siteFiles/js/main.js')
     .pipe(prompt.confirm('Are you sure you want to publish your code?'))
@@ -40,7 +45,7 @@ task('prompt',  () => {
         message: 'Select what you want to pubish',
         choices: ['All', 'JavaScript', 'CSS', 'Images']
      }],
-     function(res){
+     function(res: any){
        publishConfig.filesToPublish = res.filesToPublish;
     }))
     .pipe(gulpif(util.env.production, prompt.prompt(
@@ -49,7 +54,7 @@ task('prompt',  () => {
           type: 'input',
           message: 'Please enter your hostname',
           name: 'hostname',
-          validate: function(hostname){
+          validate: function(hostname: any){
             if(hostname !== publishConfig.hosting.host){
               util.log('Hostname is incorrect: ', util.colors.bgRed(hostname));
               return false;
@@ -62,7 +67,7 @@ task('prompt',  () => {
           type: 'input',
           message: 'Please enter your username',
           name: 'username',
-          validate: function(username){
+          validate: function(username: any){
             if(username !== publishConfig.hosting.username){
               util.log('Username is incorrect: ', util.colors.bgRed(username));
               return false;
@@ -75,7 +80,7 @@ task('prompt',  () => {
           type: 'password',
           message: 'Please enter your password',
           name: 'password',
-          validate: function(password){
+          validate: function(password: any){
             if(password !== publishConfig.hosting.password){
               util.log('Password is incorrect: ', util.colors.bgRed(password));
               return false;
@@ -84,7 +89,7 @@ task('prompt',  () => {
           }
         }
       ],
-      function(response){
+      function(response: any){
         // store new updated ftp details
         publishConfig.hosting.host = response.hostname;
         publishConfig.hosting.username = response.username;

@@ -16,7 +16,7 @@ export const BROWSER_SYNC_OPTIONS = {
 
 // Sass Setting
 export const sassConfig = {
-  start: './sass/*.scss',
+  start: './src/sass/*.scss',
   end: './dist/siteFiles/css',
   compiled: './dist/siteFiles/css/*.css'
 }
@@ -30,14 +30,14 @@ export const HTML_MINIFIER_OPTIONS = {
 };
 
 export const HTMLConfig = {
-  start: './*.html',
+  start: './src/*.html',
   end: './dist/',
   compiled: './dist/*.html'
 }
 
 // TS settings
 export const TSConfig = {
-  start: './ts/main.ts',
+  start: './src/ts/main.ts',
   end: './dist/siteFiles/js',
   fileName: 'main.min.js',
   compiled: './dist/siteFiles/js/*.js'
@@ -51,7 +51,7 @@ export const IMAGE_OPTIMIZATION_OPTIONS = {
 };
 
 export const ImageConfig = {
-  start: 'images/**',
+  start: 'src/images/**',
   end: './dist/siteFiles/images',
   compiled: 'siteFiles/images/**'
 }
@@ -64,9 +64,9 @@ export const publishConfig = {
 
     // ftp details
     hosting: {
-      host:     'ftp.paulmatchett.co.uk',
-      username:     'paulmatchett.co.uk',
-      password: 'Nanook080809',
+      host:     'ftp.hostname.co.uk',
+      username:     'username.co.uk',
+      password: 'password',
     },
 
     // where the files end up

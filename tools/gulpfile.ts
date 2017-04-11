@@ -7,5 +7,5 @@ import './tasks/compile-typescript';
 import './tasks/watch';
 import './tasks/default';
 
-// import './tasks/prompt';
-// import './tasks/publish';
+import './tasks/prompt';
+import './tasks/publish';

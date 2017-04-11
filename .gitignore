@@ -44,11 +44,4 @@ jspm_packages
 ### Sass ###
 .sass-cache/
 *.css.map
-
-
-### Img Temp ###
-images/*.jpg 
-images/*.jpeg 
-images/*.png 
-images/*.gif
-images/*.svg  
+ 
