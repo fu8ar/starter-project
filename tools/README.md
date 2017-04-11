@@ -1,6 +1,12 @@
 # Tools Folder
 
-This folder is primarily used for controlling projects tasks. These are as follows:
+This folder is primarily used for controlling projects tasks. 
+
+**tasks**
+
+This is where development and production tasks are held.
+
+These are as follows:
 
 1. Run local server using BrowserSyn
 2. Compile SASS with/without sourcemaps
@@ -9,10 +15,6 @@ This folder is primarily used for controlling projects tasks. These are as follo
 5. Optimize and manage images structure
 6. Minify, remove commentsof all HTML files
 7. Upload projects files via FTP to staging/production area
-
-**tasks**
-
-This is where development and production tasks are held.
 
 **tsconfig.json**
 
