@@ -65,7 +65,7 @@ export const publishConfig = {
     // ftp details
     hosting: {
       host:     'ftp.hostname.co.uk',
-      username:     'username.co.uk',
+      username: 'username.co.uk',
       password: 'password',
     },
 
