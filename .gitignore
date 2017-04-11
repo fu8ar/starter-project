@@ -45,3 +45,5 @@ jspm_packages
 .sass-cache/
 *.css.map
  
+### VS Code ###
+.vscode
