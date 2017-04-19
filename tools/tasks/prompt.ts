@@ -18,7 +18,7 @@
 import { task, src } from 'gulp';
 
 // Project Settings
-import { publishConfig, FTP_OPTIONS } from '../constants';
+import { TSConfig, publishConfig, FTP_OPTIONS } from '../constants';
 
 // NPM Dev Dependencies
 
@@ -36,7 +36,7 @@ task('prompt',  [
   'compile-typescript'
   ], () => {
 
-  return src('./dist/siteFiles/js/main.js')
+  return src(TSConfig.compiled)
     .pipe(prompt.confirm('Are you sure you want to publish your code?'))
     .pipe(prompt.prompt(
       [{
@@ -47,6 +47,7 @@ task('prompt',  [
      }],
      function(res: any){
        publishConfig.filesToPublish = res.filesToPublish;
+       util.log('File chosen', publishConfig.filesToPublish);
     }))
     .pipe(gulpif(util.env.production, prompt.prompt(
       [
