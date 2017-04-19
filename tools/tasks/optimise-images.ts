@@ -18,7 +18,7 @@
 import { task, src, dest } from 'gulp';
 
 // Project Settings
-import { ImageConfig, IMAGE_OPTIMIZATION_OPTIONS } from '../constants';
+import { ImageConfig } from '../constants';
 
 // NPM Dev Dependencies
 
@@ -36,7 +36,14 @@ const browserSync = require('browser-sync');
 task('optimise-images', () => {
   return src(ImageConfig.start)
   .pipe(newer(ImageConfig.start))
-  .pipe(imagemin(IMAGE_OPTIMIZATION_OPTIONS))
+  .pipe(imagemin([
+    imagemin.gifsicle({interlaced: true}),
+    imagemin.jpegtran({progressive: true}),
+    imagemin.optipng({optimizationLevel: 5}),
+    imagemin.svgo({plugins: [{removeViewBox: true}]})
+  ],{
+    verbose: true
+  }))
   .pipe(dest(ImageConfig.end))
   .pipe(browserSync.stream());
 });
