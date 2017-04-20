@@ -51,6 +51,9 @@ function filesToPublish(selectedOption: any){
   else if(selectedOption == 'Images'){
     ret = [publishConfig.filesRoutes.images];
   }
+  else if(selectedOption == 'Fonts'){
+    ret = [publishConfig.filesRoutes.fonts];
+  }
   else{
     ret = publishConfig.filesRoutes.all;
   }

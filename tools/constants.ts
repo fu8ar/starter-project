@@ -73,8 +73,8 @@ export const publishConfig = {
 
     // where the files end up
     fileLocations: {
-      staging: '/private_html',
-      production: '/public_html'
+      staging: '/staged',
+      production: '/www'
     },
 
     // this is a default value
@@ -85,6 +85,7 @@ export const publishConfig = {
       css: './dist/siteFiles/css/*.css',
       javascript: './dist/siteFiles/js/*.js',
       images: './dist/siteFiles/images/**/**',
+      fonts: './dist/siteFiles/fonts/**/**',
       all: [
         './dist/siteFiles/css/*.css',
         './dist/siteFiles/js/*.js',

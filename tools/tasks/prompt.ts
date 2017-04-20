@@ -43,7 +43,7 @@ task('prompt',  [
         type: 'list',
         name: 'filesToPublish',
         message: 'Select what you want to pubish',
-        choices: ['All', 'JavaScript', 'CSS', 'Images']
+        choices: ['All', 'JavaScript', 'CSS', 'Images', 'Fonts']
      }],
      function(res: any){
        publishConfig.filesToPublish = res.filesToPublish;
