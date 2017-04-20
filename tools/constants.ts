@@ -1,8 +1,5 @@
 // NPM Dev Dependencies
 
-// png plugin
-const pngquant = require('imagemin-pngquant');
-
 // decide if in development or production mode
 const util = require('gulp-util');
 
@@ -40,15 +37,9 @@ export const TSConfig = {
   start: './src/ts/main.ts',
   end: './dist/siteFiles/js',
   fileName: 'main.min.js',
-  compiled: './dist/siteFiles/js/*.js'
+  compiled: './dist/siteFiles/js/*.js',
+  reload: true
 }
-
-// Image Optimsation Settings
-export const IMAGE_OPTIMIZATION_OPTIONS = {
-  progressive: true,
-  svgoPlugins: [{removeViewBox: false}],
-  use: [pngquant()]
-};
 
 export const ImageConfig = {
   start: 'src/images/**',
@@ -64,9 +55,9 @@ export const publishConfig = {
 
     // ftp details
     hosting: {
-      host:     'ftp.hostname.co.uk',
-      username: 'username.co.uk',
-      password: 'password',
+      host:     '192.168.1.115',
+      username: 'whalemarine-project.beingonline.co.uk|BeingOnlineFTP',
+      password: 'Channel#3'
     },
 
     // where the files end up
@@ -82,11 +73,11 @@ export const publishConfig = {
     filesRoutes: {
       css: './dist/siteFiles/css/*.css',
       javascript: './dist/siteFiles/js/*.js',
-      images: './dist/siteFiles/images/*.{png,gif,jpg}',
+      images: './dist/siteFiles/images/**/**',
       all: [
         './dist/siteFiles/css/*.css',
         './dist/siteFiles/js/*.js',
-        './dist/siteFiles/images/*.{png,gif,jpg}'
+        './dist/siteFiles/images/**/**'
       ]
     }
   }
@@ -94,9 +85,7 @@ export const publishConfig = {
   export const FTP_OPTIONS = {
     host:     publishConfig.hosting.host,
     user:     publishConfig.hosting.username,
-    password: publishConfig.hosting.password,
-    parallel: 10,
-    log:      util.log
+    password: publishConfig.hosting.password
   }
 
 
