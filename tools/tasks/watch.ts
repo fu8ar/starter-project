@@ -28,7 +28,7 @@ gulp.task('watch', () => {
 
 
   gulp.watch(HTMLConfig.start, ['minify-html']); 
-  gulp.watch(HTMLConfig.start).on('change', reload);
+  gulp.watch(HTMLConfig.compiled).on('change', reload);
 
   gulp.watch(sassConfig.start, ['compile-sass']);
   gulp.watch(sassConfig.compiled).on('change', reload);
