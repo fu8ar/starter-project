@@ -32,6 +32,17 @@ export const HTMLConfig = {
   compiled: './dist/*.html'
 }
 
+// Vendor Config
+export const VendorConfig = {
+  libraries: [
+    './node_modules/jquery/dist/jquery.js',
+    './node_modules/tether/dist/js/tether.js',
+    './node_modules/bootstrap/dist/js/bootstrap.js',
+    './node_modules/slick-carousel/slick/slick.js'
+  ],
+  end: './dist/siteFiles/js'
+}
+
 // TS settings
 export const TSConfig = {
   start: './src/ts/main.ts',
@@ -55,9 +66,9 @@ export const publishConfig = {
 
     // ftp details
     hosting: {
-      host:     '192.168.1.115',
-      username: 'whalemarine-project.beingonline.co.uk|BeingOnlineFTP',
-      password: 'Channel#3'
+      host:     'Enter Hostname Here',
+      username: 'Enter Username Here',
+      password: 'Enter Password Here'
     },
 
     // where the files end up

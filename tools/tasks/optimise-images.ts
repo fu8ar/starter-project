@@ -35,7 +35,7 @@ const browserSync = require('browser-sync');
 */
 task('optimise-images', () => {
   return src(ImageConfig.start)
-  .pipe(newer(ImageConfig.start))
+  .pipe(newer(ImageConfig.end))
   .pipe(imagemin([
     imagemin.gifsicle({interlaced: true}),
     imagemin.jpegtran({progressive: true}),

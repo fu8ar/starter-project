@@ -18,6 +18,9 @@
 // import Gulp library
 import { task, src, dest } from 'gulp';
 
+// Project Settings
+import { VendorConfig } from '../constants';
+
 // NPM Dev Dependencies
 
 // Combining all vendor file into one file and minifying
@@ -27,13 +30,9 @@ const browserSync = require('browser-sync');
 
 // Task
 task('compile-vendor', () => {
-    return src([
-        './node_modules/jquery/dist/jquery.js',
-        './node_modules/tether/dist/js/tether.js',
-        './node_modules/bootstrap/dist/js/bootstrap.js'
-      ])
+    return src(VendorConfig.libraries)
         .pipe(concat('vendor.min.js'))
         .pipe(uglify())
-        .pipe(dest('./dist/siteFiles/js'))
+        .pipe(dest(VendorConfig.end))
         .pipe(browserSync.stream());
 });
