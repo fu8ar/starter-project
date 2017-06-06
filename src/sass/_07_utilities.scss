@@ -27,8 +27,8 @@
     /* 
         Assigning clearfix to classes 
     */
-    .clearfix, .group{
-    @include clearfix();
+    .u-clearfix, .u-group{
+        @include clearfix();
     }
 
 

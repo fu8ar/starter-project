@@ -44,24 +44,20 @@ h6, .h6{
 	font-size: $font-size-h6;
 }
 
-p, ul li, a, input, select, option, th, td{
+p, ul li, a, input, label, select, option, th, td{
     font-size: $lead-font-size;
+}
+
+p a, ul li a{
+    color: $link-color;
+    &:hover{
+        color: $link-hover-color;
+        text-decoration: $link-hover-decoration;
+    }
 }
 
 small {
     font-size: $small-font-size;
 }
 
-header{}
 
-nav{}
-
-main{}
-
-aside{}
-
-footer{}
-
-@include placeholder {
-    font-size: $font-size-h6;
-}

@@ -27,3 +27,8 @@
       @include box-sizing(border-box);
     }
 
+    /* Placeholder Styling */
+    @include placeholder {
+        font-size: $font-size-h6;
+    }
+
