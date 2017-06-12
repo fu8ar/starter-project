@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@types/browser-sync": "0.0.34",
-    "@types/gulp": "^4.0.2",
+    "@types/gulp": "^3.8.28",
     "@types/gulp-autoprefixer": "0.0.30",
     "@types/gulp-cached": "0.0.30",
     "@types/gulp-concat": "0.0.30",
