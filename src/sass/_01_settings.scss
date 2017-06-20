@@ -73,10 +73,10 @@ $avenir: 	"Avenir LT W01_85 Heavy1475544";
 $avenir_bold: "Avenir LT W01_95 Black1475556";
 $georgia: 	"Georgia W01 Regular";
 
+$font-size-xs:   convert-px-to-rem(12);
+$font-size-sm:   convert-px-to-rem(14);
 $font-size-base: convert-px-to-rem(16); // Assumes the browser default, typically `16px` 
 $font-size-lg:   convert-px-to-rem(20);
-$font-size-sm:   convert-px-to-rem(14);
-$font-size-xs:   convert-px-to-rem(12);
 
 $font-weight-normal: normal;
 $font-weight-bold: bold;

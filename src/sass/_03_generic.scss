@@ -15,6 +15,9 @@
     // Global resets to common HTML elements and more for easier usage by Bootstrap.
     @import "./node_modules/bootstrap/scss/reboot";
 
+    // Shared declarations for certain elements.
+    @import "./node_modules/bootstrap/scss/type";
+
 
 /*
 	Project Generic
