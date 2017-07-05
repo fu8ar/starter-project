@@ -19,108 +19,129 @@
 	Project Settings
 */
 
+// import tools for convert-px-to-rem function
+@import "02_tools";
+
+
+
+
+// Fonts
+//
+// Font Names, Headings and parapraph sizes, converted to REM.
+
+
+/* Load in Fonts */
+@import url(https://fast.fonts.net/cssapi/177f7279-88e7-4847-a58d-f7cfdf48d987.css);
+
+// Fonts Used
+$avenir: 	         "Avenir LT W01_85 Heavy1475544";
+$avenir_bold:        "Avenir LT W01_95 Black1475556";
+$georgia: 	         "Georgia W01 Regular";
+
+// Set of fontsizes to add to html element
+$font-size-xs:       convert-px-to-rem(12);
+$font-size-sm:       convert-px-to-rem(14);
+$font-size-base:     convert-px-to-rem(16); // Assumes the browser default, typically `16px` 
+$font-size-lg:       convert-px-to-rem(20);
+
+// set font weight variables
+$font-weight-normal: normal;
+$font-weight-bold:   bold;
+$font-weight-base:   $font-weight-normal;
+
+// Header varibles converted to REM 
+$font-size-h1:       convert-px-to-rem(40);
+$font-size-h2:       convert-px-to-rem(32);
+$font-size-h3:       convert-px-to-rem(28);
+$font-size-h4:       convert-px-to-rem(24);
+$font-size-h5:       convert-px-to-rem(20);
+$font-size-h6:       convert-px-to-rem(16);
+
+// General Copy Text size
+$lead-font-size:     convert-px-to-rem(20);
+$lead-font-weight:   $font-weight-normal;
+
+// Small Copy Text size
+$small-font-size:    80%;
+
+
+
+
 
 // Colors
 //
-// Grayscale and brand colors for use across Bootstrap.
+// 
 
 // Start with assigning color names to specific hex values.
-$white:  #fff;
-$black:  #000;
-$red:    #d9534f;
-$orange: #f0ad4e;
-$yellow: #ffd500;
-$green:  #5cb85c;
-$blue:   #0275d8;
-$teal:   #5bc0de;
-$pink:   #ff5b77;
-$purple: #613d7c;
+$white:             #fff;
+$black:             #000;
 
-// Create grayscale
-$gray-dark:                 #292b2c;
-$gray:                      #464a4c;
-$gray-light:                #636c72;
-$gray-lighter:              #eceeef;
-$gray-lightest:             #f7f7f9;
+// Project Specific colors here
+$project-red:       #d9534f;
+$project-green:     #5cb85c;
 
-// Reassign color vars to semantic color scheme
-$brand-primary:             $blue;
-$brand-success:             $green;
-$brand-info:                $teal;
-$brand-warning:             $orange;
-$brand-danger:              $red;
-$brand-inverse:             $gray-dark;
+// Grayscale and brand colors for use across Bootstrap.
+$brand-primary:     #0275d8;
+$brand-success:     #5cb85c;
+$teal:              #5bc0de;
+$brand-info:        #5bc0de;
+$brand-warning:     #f0ad4e;
+$brand-danger:      #d9534f;
+
+$gray-dark:         #292b2c;
+$gray:              #464a4c;
+$gray-light:        #636c72;
+$gray-lighter:      #eceeef;
+$gray-lightest:     #f7f7f9;
+
+
 
 
 // Links
 //
 // Style anchor elements.
 
-$link-color:            $brand-primary;
-$link-decoration:       none;
-$link-hover-color:      darken($link-color, 15%);
-$link-hover-decoration: underline;
+$link-color:                $brand-primary;
+$link-decoration:           none;
+$link-hover-color:          darken($link-color, 15%);
+$link-hover-decoration:     underline;
 
-// Fonts
-//
-// Font, line-height, and color for body text, headings, and more.
 
-@import "02_tools";
-@import url(https://fast.fonts.net/cssapi/177f7279-88e7-4847-a58d-f7cfdf48d987.css);
-
-// Fonts
-$avenir: 	"Avenir LT W01_85 Heavy1475544";
-$avenir_bold: "Avenir LT W01_95 Black1475556";
-$georgia: 	"Georgia W01 Regular";
-
-$font-size-xs:   convert-px-to-rem(12);
-$font-size-sm:   convert-px-to-rem(14);
-$font-size-base: convert-px-to-rem(16); // Assumes the browser default, typically `16px` 
-$font-size-lg:   convert-px-to-rem(20);
-
-$font-weight-normal: normal;
-$font-weight-bold: bold;
-
-$font-weight-base: $font-weight-normal;
-$line-height-base: 1.5;
-
-$font-size-h1: convert-px-to-rem(40);
-$font-size-h2: convert-px-to-rem(32);
-$font-size-h3: convert-px-to-rem(28);
-$font-size-h4: convert-px-to-rem(24);
-$font-size-h5: convert-px-to-rem(20);
-$font-size-h6: convert-px-to-rem(16);
-
-$lead-font-size:   convert-px-to-rem(20);
-$lead-font-weight: 300;
-
-$small-font-size: 80%;
 
 
 // Buttons
 //
 // For each of Bootstrap's buttons, define text, background and border color.
 
-$btn-primary-color:              $white;
-$btn-primary-bg:                 $brand-primary;
-$btn-primary-border:             $btn-primary-bg;
 
-$btn-secondary-color:            $gray-dark;
-$btn-secondary-bg:               $white;
-$btn-secondary-border:           #ccc;
+// Style One Button
+$btn-primary-color:         $white;
+$btn-primary-bg:            $brand-primary;
+$btn-primary-border:        $btn-primary-bg;
 
-$btn-info-color:                 $white;
-$btn-info-bg:                    $brand-info;
-$btn-info-border:                $btn-info-bg;
+// Style Two Button
+$btn-secondary-color:       $gray-dark;
+$btn-secondary-bg:          $white;
+$btn-secondary-border:      #ccc;
 
-$btn-success-color:              $white;
-$btn-success-bg:                 $brand-success;
-$btn-success-border:             $btn-success-bg;
+// Bootstrap Validation Buttons
 
-$btn-warning-color:              $white;
-$btn-warning-bg:                 $brand-warning;
-$btn-warning-border:             $btn-warning-bg;
+// Information
+$btn-info-color:            $white;
+$btn-info-bg:               $brand-info;
+$btn-info-border:           $btn-info-bg;
 
-$btn-danger-color:               $white;
-$btn-danger-bg:                  $brand-danger;
-$btn-danger-border:              $btn-danger-bg;
+// Success
+$btn-success-color:         $white;
+$btn-success-bg:            $brand-success;
+$btn-success-border:        $btn-success-bg;
+
+// Warning
+$btn-warning-color:         $white;
+$btn-warning-bg:            $brand-warning;
+$btn-warning-border:        $btn-warning-bg;
+
+// Danger/Error
+$btn-danger-color:          $white;
+$btn-danger-bg:             $brand-danger;
+$btn-danger-border:         $btn-danger-bg;
