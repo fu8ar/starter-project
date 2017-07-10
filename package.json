@@ -1,5 +1,5 @@
 {
-  "name": "fe-starter-project",
+  "name": "starter-project",
   "version": "1.0.0",
   "description": "start project",
   "main": "index.html",
@@ -12,12 +12,7 @@
     "bootstrap",
     "browsersync"
   ],
-  "author": "Paul Matchett",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fu8ar/starter-project.git"
-  },
+  "author": "BeingOnline",
   "devDependencies": {
     "browser-sync": "^2.10.0",
     "gulp": "^3.9.0",
@@ -31,7 +26,7 @@
   },
   "dependencies": {
     "@types/browser-sync": "0.0.34",
-    "@types/gulp": "^3.8.33",
+    "@types/gulp": "^3.8.28",
     "@types/gulp-autoprefixer": "0.0.30",
     "@types/gulp-cached": "0.0.30",
     "@types/gulp-concat": "0.0.30",
@@ -54,6 +49,7 @@
     "gulp-util": "^3.0.8",
     "install": "^0.8.7",
     "npm": "^4.4.1",
+    "slick-carousel": "^1.6.0",
     "ts-node": "^3.0.2",
     "typescript": "^2.2.2",
     "vinyl-ftp": "^0.6.0"

@@ -22,6 +22,7 @@ window.MSStream = window.MSStream || {};
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
+
     /*
         Testing to see if user is on a touch device
     */
