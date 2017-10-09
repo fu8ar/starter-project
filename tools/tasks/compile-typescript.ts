@@ -51,7 +51,7 @@ task('compile-typescript', () => {
             noImplicitAny: true,
             out: TSConfig.fileName
         }))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulpif(addSourceMaps, sourcemaps.write('.')))
         .pipe(dest(TSConfig.end))
         .pipe(browserSync.stream());
