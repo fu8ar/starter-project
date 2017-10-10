@@ -32,7 +32,7 @@ const browserSync = require('browser-sync');
 task('compile-vendor', () => {
     return src(VendorConfig.libraries)
         .pipe(concat('vendor.min.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(dest(VendorConfig.end))
         .pipe(browserSync.stream());
 });
